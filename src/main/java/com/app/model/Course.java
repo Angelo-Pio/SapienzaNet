@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -46,7 +48,8 @@ public class Course {
 	@Length(max=4000)
 	private String professor_details;
 	
-	@DateTimeFormat(pattern="yyyy-yyyy")
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
 	private Date academic_year;
 	
 	@Length(max=500)
