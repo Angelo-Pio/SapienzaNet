@@ -63,6 +63,7 @@ public class CourseController {
 
 	@PostMapping("{course_code}/insert")
 	public ResponseEntity<Boolean> insert(@PathVariable("course_code") Integer course_code) {
+//		TODO insert into Filesystem
 		return null;
 	}
 
@@ -87,7 +88,6 @@ public class CourseController {
 
 	}
 	
-//	// TODO Return a model or a page ...
 		@ExceptionHandler(MethodArgumentNotValidException.class)
 		public ResponseEntity<List<HashMap<String, String>>> handleParameterNotValid(MethodArgumentNotValidException e) {
 			log.error("Argument not valid from controller callback");

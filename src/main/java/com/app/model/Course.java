@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
@@ -35,13 +37,6 @@ public class Course {
 	@Column(unique = true)
 	private Integer class_code;
 
-	/*
-	 * 
-	@NotBlank
-	@NotNull
-	@Length(max = 100)
-	private String department;
-	 */
 	
 	@NotNull
 	@Length(max = 255)
@@ -72,6 +67,8 @@ public class Course {
 	
 	@NotNull
 	@PositiveOrZero //Zero not accepted !
+	@Min(value = 1)
+	@Max(value = 3)
 	private Integer year;
 	
 //	There is the need to give a meaning to this this property
