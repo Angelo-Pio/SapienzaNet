@@ -31,12 +31,12 @@ public class PostController {
 	}
 	
 	@GetMapping("/{id}/show")
-	public ResponseEntity<Boolean> readOne(@PathVariable("id") String id){
+	public ResponseEntity<Boolean> showOne(@PathVariable("id") String id){
 		return null;
 	}
 	
 	@GetMapping("show")
-	public ResponseEntity<Boolean> readAll(@RequestParam(required = false) String[] filters){
+	public ResponseEntity<Boolean> showAll(@RequestParam(required = false) String[] filters){
 		return null;
 	}
 	

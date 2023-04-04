@@ -12,6 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -68,10 +69,9 @@ public class Course {
 	@Length(max=4000)
 	private String professor_details;
 	
-	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@NotNull
-	@Temporal(TemporalType.DATE)
-	private Date academic_year;
+	@PositiveOrZero //Zero not accepted !
+	private Integer year;
 	
 //	There is the need to give a meaning to this this property
 	@Length(max=500)

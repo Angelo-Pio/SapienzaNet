@@ -21,7 +21,7 @@ public class ResponseCourseDto {
 	
 	private String professor_details;
 	
-	private Date academic_year;
+	private Integer year;
 	
 	private String style;
 	
