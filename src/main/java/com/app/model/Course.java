@@ -50,13 +50,11 @@ public class Course {
 	/**
 	 * This property specifies links to videos, pages etc. related to the course
 	 */
-	@NotNull
 	@Length(max = 500)
 	@Column(columnDefinition = "varchar(500) default ' ' ")
 	private String resources;
 	
 	
-	@NotNull
 	@Length(max = 1000)
 	@Column(columnDefinition = "varchar(1000) default 'Dettagli del corso a breve disponibili' ")
 	private String details;
@@ -78,7 +76,6 @@ public class Course {
 	
 //	There is the need to give a meaning to this this property
 	@Length(max=500)
-	@NotNull
 	@Column(columnDefinition = "varchar(500) default 'default'"  )
 	private String style;
 	
