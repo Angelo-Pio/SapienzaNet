@@ -1,5 +1,9 @@
 package com.app.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +50,7 @@ public class CourseService {
 
 	public Optional<ResponseCourseDto> getOneCourse(Integer course_code) {
 
-		log.info("Starting Course retrieval...");
+		log.info("Starting Course "+String.valueOf(course_code)+" retrieval...");
 		
 		log.info("Inspecting database...");
 		Optional<Course> courseOpt = repo.findById(course_code);
@@ -63,5 +67,29 @@ public class CourseService {
 		
 		return Optional.of(mapper.toResponseDto(course));
 
+	}
+
+	public HashMap<String, List<ResponseCourseDto>> getAllCourses() {
+
+		log.info("Starting to retrieve all courses...");
+		HashMap<String, List<ResponseCourseDto>> resultMap = new HashMap<>(3);
+		
+		log.info("First Year courses...");
+		
+		
+		List<ResponseCourseDto> first_year = mapper.toListOfResponseDto(repo.findAllByYear(1) );
+		resultMap.put("first_year", first_year );
+		
+		log.info("Second Year courses...");
+		
+		List<ResponseCourseDto> second_year = mapper.toListOfResponseDto(repo.findAllByYear(2) );
+		resultMap.put("second_year", second_year);
+
+		log.info("Third Year courses...");
+		List<ResponseCourseDto> third_year = mapper.toListOfResponseDto(repo.findAllByYear(3) );
+		resultMap.put("third_year", third_year);
+		
+		
+		return resultMap;
 	}
 }

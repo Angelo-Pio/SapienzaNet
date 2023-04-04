@@ -1,5 +1,8 @@
 package com.app.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ResponseCourseDto;
@@ -20,7 +22,7 @@ import com.app.service.CourseService;
 /**
  * @author angelo 
  * 		C -> create single Course from object 
- * 		R -> show all Courses by filters 
+ * 		R -> show all Courses as list of lists :
  * 			List<ResponseCourseDto> : [0 => first year , 1 => second_year, 2 => third_year] 
  * 		or show one by class code 
  * U - D-> Not yet supported
@@ -55,8 +57,12 @@ public class CourseController {
 	}
 
 	@GetMapping("show")
-	public ResponseEntity<Boolean> showAll(@RequestParam String[] filters) {
-		return null;
+	public ResponseEntity<Map<String,List<ResponseCourseDto>>> showAll() {
+		
+		HashMap<String,List<ResponseCourseDto>> resp = service.getAllCourses();
+		return new ResponseEntity<>(resp, HttpStatus.OK);
+
+	
 	}
 
 	@GetMapping("{course_code}/show")
