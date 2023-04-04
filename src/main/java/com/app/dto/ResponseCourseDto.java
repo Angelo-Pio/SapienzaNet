@@ -1,14 +1,17 @@
 package com.app.dto;
 
-import java.util.Date;
+import lombok.Builder;
+import lombok.Data;
 
+@Builder
+@Data
 public class ResponseCourseDto {
 	
 	
 	//This must be unique!
 	private Integer class_code;
 	
-//	private String department;
+	private String name;
 	
 	/**
 	 * This property specifies links to videos, pages etc. related to the course

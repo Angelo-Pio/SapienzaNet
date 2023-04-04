@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="classes")
+@Table(name="courses")
 public class Course {
 
 	@Id
@@ -43,6 +43,9 @@ public class Course {
 	private String department;
 	 */
 	
+	@NotNull
+	@Length(max = 255)
+	private String name; 
 	
 	/**
 	 * This property specifies links to videos, pages etc. related to the course
