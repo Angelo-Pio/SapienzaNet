@@ -1,13 +1,19 @@
 package com.app.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.dto.ResponseCourseDto;
 import com.app.model.Course;
 import com.app.service.CourseService;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author angelo 
@@ -36,14 +44,16 @@ import com.app.service.CourseService;
  *         |------- files
  */
 @RestController
+@Slf4j
 @RequestMapping("/course")
 public class CourseController {
 
 	@Autowired
 	CourseService service;
 
+//	CREATE
 	@PostMapping("create")
-	public ResponseEntity<Boolean> create(@RequestBody Course course) {
+	public ResponseEntity<Boolean> create(@Valid @RequestBody Course course) {
 
 		Boolean resp = service.createCourse(course);
 
@@ -56,6 +66,7 @@ public class CourseController {
 		return null;
 	}
 
+//	READ
 	@GetMapping("show")
 	public ResponseEntity<Map<String,List<ResponseCourseDto>>> showAll() {
 		
@@ -75,5 +86,25 @@ public class CourseController {
 		return new ResponseEntity<>(courseOpt.get(), HttpStatus.OK);
 
 	}
-
+	
+//	// TODO Return a model or a page ...
+		@ExceptionHandler(MethodArgumentNotValidException.class)
+		public ResponseEntity<List<HashMap<String, String>>> handleParameterNotValid(MethodArgumentNotValidException e) {
+			log.error("Argument not valid from controller callback");
+			
+			
+			List<HashMap<String, String>> res = new ArrayList<>();
+			
+			for(FieldError r : e.getFieldErrors()) {
+				
+				HashMap<String,String> map = new HashMap<>(2);
+				map.put("field", r.getField() );
+				map.put("message", r.getDefaultMessage());
+				res.add(map);
+			}			
+			
+			
+			return new ResponseEntity<>(res,HttpStatus.BAD_REQUEST);
+			
+		}
 }
