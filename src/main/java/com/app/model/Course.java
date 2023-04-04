@@ -33,11 +33,14 @@ public class Course {
 	@NotNull
 	@Column(unique = true)
 	private Integer class_code;
-	
+
+	/*
+	 * 
 	@NotBlank
 	@NotNull
 	@Length(max = 100)
 	private String department;
+	 */
 	
 	
 	/**

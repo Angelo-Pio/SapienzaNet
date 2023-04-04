@@ -2,15 +2,13 @@ package com.app.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.app.model.Category;
 
 public class RequestPostDto {
 	
@@ -25,9 +23,8 @@ public class RequestPostDto {
 	@NotBlank
 	private String body;
 	
-	@NotBlank
+	// Check if category exists
 	@NotNull
-	@Length(max = 50)
 	private String category;
 	
 	// ? default value

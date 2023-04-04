@@ -11,6 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.model.Post;
 
+/**
+ * @author angelo
+ *	This rest controller must implement only certain CRUD operations:
+ *	C -> create one post from form compilation, autogenerate id, preview, published_at, 
+ *	R -> retrieve single post or all posts based on some filters. 
+ *		filters["category", "published_at", "coming_soon", "text"]
+ *	
+ *	U - D not yet supported 
+ *
+ */
 @RestController
 @RequestMapping("/post")
 public class PostController {

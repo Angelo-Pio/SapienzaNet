@@ -8,7 +8,7 @@ public class ResponseCourseDto {
 	//This must be unique!
 	private Integer class_code;
 	
-	private String department;
+//	private String department;
 	
 	/**
 	 * This property specifies links to videos, pages etc. related to the course
