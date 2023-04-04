@@ -30,14 +30,31 @@ import lombok.NoArgsConstructor;
 public class Course {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
+	@Column(unique = true)
 	private Integer class_code;
 	
 	@NotBlank
 	@NotNull
 	@Length(max = 100)
-	@Column(unique = true)
 	private String department;
+	
+	
+	/**
+	 * This property specifies links to videos, pages etc. related to the course
+	 */
+	@NotNull
+	@Length(max = 500)
+	@Column(columnDefinition = "varchar(500) default ' ' ")
+	private String resources;
+	
+	
+	@NotNull
+	@Length(max = 1000)
+	@Column(columnDefinition = "varchar(1000) default 'Dettagli del corso a breve disponibili' ")
+	private String details;
+
+	
 	
 	@NotBlank
 	@NotNull
@@ -49,10 +66,14 @@ public class Course {
 	private String professor_details;
 	
 	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date academic_year;
 	
+//	There is the need to give a meaning to this this property
 	@Length(max=500)
+	@NotNull
+	@Column(columnDefinition = "varchar(500) default 'default'"  )
 	private String style;
 	
 	

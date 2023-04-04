@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/class")
-public class ClassController {
+public class CourseController {
 
 	@PostMapping("create")
 	public ResponseEntity<Boolean> create(@RequestBody Class Class){return null;}

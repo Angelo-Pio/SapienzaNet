@@ -32,6 +32,11 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotNull
+	@NotBlank
+	@Length(max = 255)
+	private String title;
+	
 	@NotBlank
 	@NotNull
 	@Length(max = 500)
@@ -49,7 +54,7 @@ public class Post {
 	private String body;
 	
 	// ? default value
-	@Column(unique = true)
+	@Column(unique = true, columnDefinition = "varchar(255) default 'default.jpg'")
 	@NotNull
 	private String image_name;
 	
