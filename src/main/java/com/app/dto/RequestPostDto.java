@@ -8,8 +8,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.app.model.Category;
-
 public class RequestPostDto {
 	
 	@NotNull
