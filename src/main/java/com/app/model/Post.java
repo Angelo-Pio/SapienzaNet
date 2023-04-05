@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -60,16 +61,16 @@ public class Post {
 	private String body;
 	
 	// ? default value
-	@Column(unique = true, columnDefinition = "varchar(255) default 'default.jpg'")
-	@NotNull
-	private String image_name;
+	@Column(unique = true, columnDefinition = "varchar(255) ")
+//	@ColumnDefault("default.jpg")
+	private String image_name ;
 	
-	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@NotNull
 	private Date published_at;
 	
-	// this date must be in the future
-	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+	// TODO correct date format and check that this date is in the future
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@Column(nullable = true)
 	private Date event_date;
 	

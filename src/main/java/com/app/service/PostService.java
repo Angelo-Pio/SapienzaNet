@@ -1,20 +1,16 @@
 package com.app.service;
 
-import java.lang.reflect.Parameter;
+import java.util.Date;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.bind.BindResult;
-import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.BindingResultUtils;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import com.app.dto.RequestPostDto;
+import com.app.dto.ResponsePostDto;
+import com.app.mapper.PostMapper;
 import com.app.model.Category;
+import com.app.model.Post;
 import com.app.repository.CategoryRepository;
 import com.app.repository.PostRepository;
 
@@ -35,27 +31,42 @@ public class PostService {
 
 	public Boolean createPost(RequestPostDto request) {
 		
-		log.debug("check if category exists"); 
+		log.info("check if category exists"); 
 		Optional<Category> category = category_repo.findById(request.getCategory());
 		if(category.isPresent() == false) {
-			log.debug("category does not exists");
-			
-			  throw new MethodArgumentNotValidException(
-					  
-					  ,
-					  
-					  null
-					  );
+			log.info("category does not exists");
+//			TODO This should throw a MethodArgumentNotValidException
 			return false;
 		}
+		Date event_date = request.getEvent_date();
 		
+		log.info("map RequestPostDto to Post model");
+		Optional<Post> post = mapper.fromRequestPostDtoToModel(request,category.get());
 		
-		log.debug("map RequestPostDto to Post model");
-		Post post = mapper.fromRequestPostDtoToModel(request,category.get());
+		if(post.isEmpty()) {
+			log.info("error in attribute event date ");
+//			throw exception
+			return false;
+		}
+			
 		
-		log.debug("saving post into the db..."); 
-		category_repo.save(post);
+		log.info("saving post into the db..."); 
+		log.info(post.get().toString());
+		post_repo.save(post.get());
 		return true;
+	}
+
+	public Optional<ResponsePostDto> getOnePost(Integer id) {
+
+		log.info("Search into the db for the post with id: " + String.valueOf(id));
+		Optional<Post> postOpt = post_repo.findById(id);
+		if(postOpt.isEmpty() == true) {
+			return Optional.empty();
+		}
+		
+		Post post = postOpt.get();
+		
+		return mapper.fromModelToResponsePostDto(post);
 	}
 
 }

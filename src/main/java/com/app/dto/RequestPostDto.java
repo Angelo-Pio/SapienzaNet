@@ -36,7 +36,7 @@ public class RequestPostDto {
 	private String image_name;
 
 	// this date must be in the future
-	@DateTimeFormat(pattern = "dd/MM/yyyy hh:mm:ss")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date event_date;
 
 	/* 

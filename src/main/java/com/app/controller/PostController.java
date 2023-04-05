@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.RequestPostDto;
+import com.app.dto.ResponsePostDto;
 import com.app.service.PostService;
 
 /**
@@ -40,8 +43,10 @@ public class PostController {
 	}
 	
 	@GetMapping("/{id}/show")
-	public ResponseEntity<Boolean> showOne(@PathVariable("id") String id){
-		return null;
+	public ResponseEntity<ResponsePostDto> showOne(@PathVariable("id") Integer id){
+		
+		Optional<ResponsePostDto> resp = service.getOnePost(id);
+		return new ResponseEntity<ResponsePostDto>(resp.get(), HttpStatus.OK);
 	}
 	
 	@GetMapping("show")
@@ -50,6 +55,8 @@ public class PostController {
 	}
 	
 //	? READ by category 
+	
+	
 	
 	
 

@@ -27,3 +27,7 @@ VALUES (1009, 'Dettagli del corso a breve disponibili', 'Statistics', 'Dr. Brian
 
 INSERT INTO courses (class_code, details, name, professor_details, professor_name, resources, style, year)
 VALUES (1010, 'Dettagli del corso a breve disponibili', 'Public Speaking', 'Dr. Samantha Lee, PhD', 'Samantha Lee', ' ', 'default', 1);
+
+INSERT INTO categories (name) values ('work');
+INSERT INTO categories (name) values ('fun');
+INSERT INTO categories (name) values ('event');

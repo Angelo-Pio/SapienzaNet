@@ -10,12 +10,16 @@ import lombok.Data;
 @Table(name = "categories")
 @Data
 public class Category {
-	
 
 	@Id
 	private String name;
 
 	public Category(String name) {
+		super();
 		this.name = name;
+	}
+
+	public Category() {
+		super();
 	}
 }
