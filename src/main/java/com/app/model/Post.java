@@ -36,6 +36,11 @@ public class Post {
 	
 	@NotNull
 	@NotBlank
+	@Length(max = 255, min = 3)
+	private String author;
+	
+	@NotNull
+	@NotBlank
 	@Length(max = 255)
 	private String title;
 	

@@ -8,6 +8,9 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Data;
+
+@Data
 public class RequestPostDto {
 	
 	@NotNull
@@ -15,13 +18,17 @@ public class RequestPostDto {
 	@Length(max = 255)
 	private String title;
 	
+	@NotNull
+	@NotBlank
+	@Length(max = 255, min = 3)
+	private String author;
 	
 	@Length(max = 1000)
 	@NotNull
 	@NotBlank
 	private String body;
 	
-	// Check if category exists
+	/* TODO Check if category exists and Map this to Category object */
 	@NotNull
 	private String category;
 	

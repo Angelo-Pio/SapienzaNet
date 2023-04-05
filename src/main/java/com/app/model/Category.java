@@ -11,7 +11,11 @@ import lombok.Data;
 @Data
 public class Category {
 	
+
 	@Id
-//	@OneToMany
 	private String name;
+
+	public Category(String name) {
+		this.name = name;
+	}
 }

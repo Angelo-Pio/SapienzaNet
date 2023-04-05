@@ -25,10 +25,10 @@ public class CourseService {
 	CourseMapper mapper;
 
 	public Boolean createCourse(Course course) {
-		log.info("Starting Course creation...");
+		log.debug("Starting Course creation...");
 
 		if (course == null) {
-			log.info("null value provided: FAILURE");
+			log.debug("null value provided: FAILURE");
 			return false;
 		}
 		Integer id = course.getClass_code();

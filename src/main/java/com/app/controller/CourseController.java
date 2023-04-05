@@ -88,6 +88,7 @@ public class CourseController {
 
 	}
 	
+	// TODO make this handleParameternotValid method global
 		@ExceptionHandler(MethodArgumentNotValidException.class)
 		public ResponseEntity<List<HashMap<String, String>>> handleParameterNotValid(MethodArgumentNotValidException e) {
 			log.error("Argument not valid from controller callback");

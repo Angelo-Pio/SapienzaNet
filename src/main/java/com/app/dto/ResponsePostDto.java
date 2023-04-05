@@ -6,6 +6,8 @@ public class ResponsePostDto {
 	
 	private String title;
 	
+	private String author;
+	
 	private String preview;
 	
 	private String body;
