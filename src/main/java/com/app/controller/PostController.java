@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -9,17 +10,22 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.RequestPostDto;
 import com.app.dto.ResponsePostDto;
+import com.app.exception.ValidationException;
 import com.app.service.PostService;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author angelo
@@ -33,13 +39,14 @@ import com.app.service.PostService;
  */
 @RestController
 @RequestMapping("/post")
+@Slf4j
 public class PostController {
 
 	@Autowired
 	PostService service;
 	
 	@PostMapping("create")
-	public ResponseEntity<Boolean> create(@Valid @RequestBody RequestPostDto post){
+	public ResponseEntity<Boolean> create(@Valid @RequestBody RequestPostDto post) throws MethodArgumentNotValidException{
 		Boolean resp = service.createPost(post);
 		return new ResponseEntity<Boolean>(resp,HttpStatus.OK);
 	}
@@ -66,7 +73,25 @@ public class PostController {
 	
 //	? READ by category 
 	
-	
+	@ExceptionHandler(ValidationException.class)
+	public ResponseEntity<List<HashMap<String, String>>> handleParameterNotValid(ValidationException e) {
+		log.error("Argument not valid from controller callback");
+		
+		
+		List<HashMap<String, String>> res = new ArrayList<>();
+		
+		
+			
+			HashMap<String,String> map = new HashMap<>(2);
+			map.put("field", e.getField() );
+			map.put("message", e.getMessage());
+			res.add(map);
+					
+		
+		
+		return new ResponseEntity<>(res,HttpStatus.BAD_REQUEST);
+		
+	}
 	
 	
 

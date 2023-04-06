@@ -7,12 +7,20 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.MethodParameter;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.TypedSort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BeanPropertyBindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.app.dto.RequestPostDto;
 import com.app.dto.ResponsePostDto;
+import com.app.exception.ValidationException;
 import com.app.mapper.PostMapper;
 import com.app.model.Category;
 import com.app.model.Post;
@@ -33,15 +41,18 @@ public class PostService {
 
 	@Autowired
 	PostMapper mapper;
-
-	public Boolean createPost(RequestPostDto request) {
+	
+//	TODO handle file uploaded
+	public Boolean createPost(RequestPostDto request) throws ValidationException{
 
 		log.info("check if category exists");
 		Optional<Category> category = category_repo.findById(request.getCategory());
 		if (category.isPresent() == false) {
 			log.info("category does not exists");
-//			TODO This should throw a MethodArgumentNotValidException
-			return false;
+			throw new ValidationException("category", "The selected category does not exists");
+			
+
+//			return false;
 		}
 		Date event_date = request.getEvent_date();
 
@@ -50,7 +61,6 @@ public class PostService {
 
 		if (post.isEmpty()) {
 			log.info("error in attribute event date ");
-//			throw exception
 			return false;
 		}
 
@@ -100,4 +110,7 @@ public class PostService {
 
 	}
 
+	
+	
+	
 }

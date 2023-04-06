@@ -28,7 +28,6 @@ public class RequestPostDto {
 	@NotBlank
 	private String body;
 	
-	/* TODO Check if category exists and Map this to Category object */
 	@NotNull
 	private String category;
 	
