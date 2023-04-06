@@ -67,6 +67,7 @@ public class Post {
 	
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	@NotNull
+	@Column(name = "published_at")
 	private Date published_at;
 	
 	// TODO correct date format and check that this date is in the future

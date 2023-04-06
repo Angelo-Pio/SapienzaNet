@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -50,8 +52,16 @@ public class PostController {
 	}
 	
 	@GetMapping("show")
-	public ResponseEntity<Boolean> showAll(@RequestParam(required = false) String[] filters){
-		return null;
+	public ResponseEntity<List<ResponsePostDto>> showAll(@RequestBody(required = false) HashMap<String,String> filters){
+		
+		if(filters == null) {
+			filters = new HashMap<>();
+		}
+		
+		List<ResponsePostDto> resp = service.getAllPosts(filters);
+		return new ResponseEntity<List<ResponsePostDto>>(resp,HttpStatus.OK);
+		
+		
 	}
 	
 //	? READ by category 
