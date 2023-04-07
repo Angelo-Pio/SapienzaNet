@@ -31,9 +31,6 @@ public class RequestPostDto {
 	@NotNull
 	private String category;
 	
-	// ? default value
-	private String image_name;
-
 	// this date must be in the future
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date event_date;

@@ -10,7 +10,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +17,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.RequestPostDto;
 import com.app.dto.ResponsePostDto;
@@ -46,8 +47,13 @@ public class PostController {
 	PostService service;
 	
 	@PostMapping("create")
-	public ResponseEntity<Boolean> create(@Valid @RequestBody RequestPostDto post) throws MethodArgumentNotValidException{
-		Boolean resp = service.createPost(post);
+	public ResponseEntity<Boolean> create(
+			
+			@RequestPart("image") MultipartFile image,
+			@Valid @RequestPart("post") RequestPostDto post
+			) throws MethodArgumentNotValidException{
+		
+		Boolean resp = service.createPost(post,image);
 		return new ResponseEntity<Boolean>(resp,HttpStatus.OK);
 	}
 	
@@ -68,30 +74,42 @@ public class PostController {
 		List<ResponsePostDto> resp = service.getAllPosts(filters);
 		return new ResponseEntity<List<ResponsePostDto>>(resp,HttpStatus.OK);
 		
-		
 	}
+	
+	
+	/*
+	 * @PostMapping( path = "uploadImage", produces = MediaType.IMAGE_PNG_VALUE,
+	 * consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}
+	 * 
+	 * ) public byte[] uploadImage(@RequestPart("file") MultipartFile
+	 * file, @RequestPart("post") RequestPostDto dto) { try {
+	 * service.saveImage(file); } catch (IOException e) { // TODO Auto-generated
+	 * catch block e.printStackTrace(); }
+	 * 
+	 * log.info(dto.toString());
+	 * 
+	 * return service.getFile(file.getOriginalFilename()).getData(); }
+	 */
+	
 	
 //	? READ by category 
 	
 	@ExceptionHandler(ValidationException.class)
 	public ResponseEntity<List<HashMap<String, String>>> handleParameterNotValid(ValidationException e) {
 		log.error("Argument not valid from controller callback");
-		
-		
 		List<HashMap<String, String>> res = new ArrayList<>();
-		
-		
 			
 			HashMap<String,String> map = new HashMap<>(2);
 			map.put("field", e.getField() );
 			map.put("message", e.getMessage());
 			res.add(map);
-					
-		
 		
 		return new ResponseEntity<>(res,HttpStatus.BAD_REQUEST);
 		
 	}
+	
+	
+	
 	
 	
 

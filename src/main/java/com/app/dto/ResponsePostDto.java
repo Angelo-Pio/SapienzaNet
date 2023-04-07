@@ -2,6 +2,8 @@ package com.app.dto;
 
 import java.util.Date;
 
+import com.app.model.PostImage;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +26,7 @@ public class ResponsePostDto {
 	private String category;
 	
 	// default value
-	private String image_name;
+	private PostImage image;
 
 	private Date published_at;
 	
