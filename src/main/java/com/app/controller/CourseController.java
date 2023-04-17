@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dto.ResponseCourseDto;
@@ -61,9 +62,21 @@ public class CourseController {
 
 	}
 
-	@PostMapping("{course_code}/insert")
-	public ResponseEntity<Boolean> insert(@PathVariable("course_code") Integer course_code) {
-//		TODO insert into Filesystem
+//	FILE HANDLING
+	
+	@PostMapping("{course_code}/upload")
+	public ResponseEntity<Boolean> upload(
+			@PathVariable("course_code") Integer course_code) {
+//		TODO insert into Filesystem a new file
+		return null;
+	}
+	
+	@GetMapping("{course_code}/download")
+	public ResponseEntity<Boolean> download(
+			@PathVariable("course_code") Integer course_code,
+			@RequestParam("filename") String filename,
+			) {
+//		TODO download file
 		return null;
 	}
 

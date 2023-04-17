@@ -39,7 +39,6 @@ public class PostService {
 	@Autowired
 	PostMapper mapper;
 	
-//	TODO handle file uploaded
 	public Boolean createPost(RequestPostDto request, MultipartFile file) throws ValidationException{
 
 		log.info("check if category exists");
