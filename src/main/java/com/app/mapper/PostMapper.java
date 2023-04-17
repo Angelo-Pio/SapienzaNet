@@ -49,7 +49,7 @@ public class PostMapper {
 	public Optional<PostImage> fromMultiPartFileToModel(MultipartFile image_data) {
 		PostImage image;
 		try {
-			image = new PostImage(image_data.getBytes(), image_data.getOriginalFilename());
+			image = new PostImage(image_data.getBytes(), image_data.getResource().getFilename());
 		} catch (IOException e) {
 			return Optional.empty();
 		}

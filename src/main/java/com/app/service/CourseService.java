@@ -3,13 +3,16 @@ package com.app.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.ResponseCourseDto;
 import com.app.mapper.CourseMapper;
 import com.app.model.Course;
+import com.app.model.CourseFile;
 import com.app.repository.CourseRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -89,6 +92,29 @@ public class CourseService {
 		
 		
 		return resultMap;
+	}
+
+	public Boolean storeFile(MultipartFile file, Integer course_code) {
+
+		if(repo.existsById(course_code) == false) return false;
+		
+		CourseFile course_file = mapper.fromMultipartFileToCourseFile(file);
+		
+		Course course = repo.findById(course_code).get();
+		
+		
+		
+		Set<CourseFile> files =  course.getFiles();
+		
+		if(files.contains(course_file) == true ) return false;
+		
+		course.getFiles().add(course_file);
+		
+		repo.save(course);
+		
+		
+		
+		return true;
 	}
 	
 	

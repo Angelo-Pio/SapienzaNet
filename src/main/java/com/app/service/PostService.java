@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +19,7 @@ import com.app.model.Category;
 import com.app.model.Post;
 import com.app.model.PostImage;
 import com.app.repository.CategoryRepository;
-import com.app.repository.FileRepository;
+import com.app.repository.PostImageRepository;
 import com.app.repository.PostRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +35,7 @@ public class PostService {
 	CategoryRepository category_repo;
 
 	@Autowired
-	FileRepository file_repo;
+	PostImageRepository file_repo;
 
 	@Autowired
 	PostMapper mapper;
@@ -110,6 +111,26 @@ public class PostService {
 
 		return resp;
 
+	}
+
+	public Optional<PostImage> getFile(String originalFilename) {
+		
+		Optional<PostImage> image = file_repo.getByFilename(originalFilename);
+		if(image.isEmpty()) {
+			return Optional.empty();
+		}
+		return Optional.of(image.get());
+	
+	}
+
+	public boolean saveImage(MultipartFile file) throws Exception {
+
+		PostImage image = new PostImage(file.getBytes(), file.getName());
+		
+		file_repo.save(image);
+		
+		return true;
+		
 	}
 
 	

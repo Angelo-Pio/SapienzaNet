@@ -1,8 +1,13 @@
 package com.app.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -47,8 +52,6 @@ public class Course {
 	@Column(columnDefinition = "varchar(1000) default 'Dettagli del corso a breve disponibili' ")
 	private String details;
 
-	
-	
 	@NotBlank
 	@NotNull
 	@Length(max=50)
@@ -69,5 +72,8 @@ public class Course {
 	@Column(columnDefinition = "varchar(500) default 'default'"  )
 	private String style;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "Id")
+	private Set<CourseFile> files;
 	
 }

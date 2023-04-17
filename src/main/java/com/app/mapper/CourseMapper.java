@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.dto.ResponseCourseDto;
 import com.app.model.Course;
+import com.app.model.CourseFile;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,6 +41,14 @@ public class CourseMapper {
 			resp.add(this.toResponseDto(course));
 		}
 		return resp;
+	}
+
+	public CourseFile fromMultipartFileToCourseFile(MultipartFile file) {
+		
+		String filename = file.getResource().getFilename();
+		String type = StringUtils.getFilenameExtension(filename);
+		return new CourseFile(filename,type,file.getBytes());
+		
 	}
 
 	

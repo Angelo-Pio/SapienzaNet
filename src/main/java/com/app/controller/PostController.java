@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +10,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,21 +80,6 @@ public class PostController {
 	}
 	
 	
-	/*
-	 * @PostMapping( path = "uploadImage", produces = MediaType.IMAGE_PNG_VALUE,
-	 * consumes = {MediaType.MULTIPART_FORM_DATA_VALUE}
-	 * 
-	 * ) public byte[] uploadImage(@RequestPart("file") MultipartFile
-	 * file, @RequestPart("post") RequestPostDto dto) { try {
-	 * service.saveImage(file); } catch (IOException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); }
-	 * 
-	 * log.info(dto.toString());
-	 * 
-	 * return service.getFile(file.getOriginalFilename()).getData(); }
-	 */
-	
-	
 //	? READ by category 
 	
 	@ExceptionHandler(ValidationException.class)
@@ -103,6 +91,25 @@ public class PostController {
 			map.put("field", e.getField() );
 			map.put("message", e.getMessage());
 			res.add(map);
+		
+		return new ResponseEntity<>(res,HttpStatus.BAD_REQUEST);
+		
+	}
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<List<HashMap<String, String>>> handleParameterNotValid(MethodArgumentNotValidException e) {
+		log.error("Argument not valid from controller callback");
+		
+		
+		List<HashMap<String, String>> res = new ArrayList<>();
+		
+		for(FieldError r : e.getFieldErrors()) {
+			
+			HashMap<String,String> map = new HashMap<>(2);
+			map.put("field", r.getField() );
+			map.put("message", r.getDefaultMessage());
+			res.add(map);
+		}			
+		
 		
 		return new ResponseEntity<>(res,HttpStatus.BAD_REQUEST);
 		

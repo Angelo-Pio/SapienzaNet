@@ -23,7 +23,7 @@ public class RequestPostDto {
 	@Length(max = 255, min = 3)
 	private String author;
 	
-	@Length(max = 1000)
+	@Length(min = 50 , max = 1000)
 	@NotNull
 	@NotBlank
 	private String body;
