@@ -78,7 +78,7 @@ public class CourseController {
 
 	}
 
-	@GetMapping(path="{course_code}/download", produces = MediaType.IMAGE_PNG_VALUE)
+	@GetMapping(path="{course_code}/download")
 	public ResponseEntity<byte[]> download(@PathVariable("course_code") Integer course_code,
 			@RequestParam("filename") String filename) {
 		
@@ -86,6 +86,10 @@ public class CourseController {
 		headers.setContentDisposition( ContentDisposition.attachment().build()) ; 	
 		CourseFile resp = service.retrieveFile(filename,course_code);
 		
+		if(resp == null) {
+			
+			return ResponseEntity.ok().headers(headers).body(null);
+		}
 		
 		
 		return ResponseEntity.ok().headers(headers).body(resp.getData());
