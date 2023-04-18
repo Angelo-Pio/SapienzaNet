@@ -1,6 +1,5 @@
 package com.app.controller;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +10,8 @@ import javax.validation.Valid;
 
 import org.apache.tomcat.util.http.fileupload.impl.FileSizeLimitExceededException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ServerProperties.Tomcat.Resource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -82,11 +82,13 @@ public class CourseController {
 	public ResponseEntity<byte[]> download(@PathVariable("course_code") Integer course_code,
 			@RequestParam("filename") String filename) {
 		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentDisposition( ContentDisposition.attachment().build()) ; 	
 		CourseFile resp = service.retrieveFile(filename,course_code);
 		
 		
 		
-		return new ResponseEntity<>(resp.getData(), HttpStatus.OK);
+		return ResponseEntity.ok().headers(headers).body(resp.getData());
 	}
 
 //	READ
