@@ -1,12 +1,13 @@
 package com.app.model;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
@@ -72,8 +73,12 @@ public class Course {
 	@Column(columnDefinition = "varchar(500) default 'default'"  )
 	private String style;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "Id")
-	private Set<CourseFile> files;
+	@OneToMany(orphanRemoval = true,cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<CourseFile> files;
+	
+	
+	public void addFile(CourseFile file) { files.add(file);}
+	public void removeFile(CourseFile file) { files.remove(file);}
+	
 	
 }

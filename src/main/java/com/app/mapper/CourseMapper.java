@@ -1,5 +1,6 @@
 package com.app.mapper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class CourseMapper {
 				.resources(course.getResources())
 				.professor_details(course.getProfessor_details())
 				.professor_name(course.getName())
+				.files(course.getFiles())
 				.build();
 						
 	}
@@ -37,17 +39,25 @@ public class CourseMapper {
 		if(courses == null) return null;
 		
 		List<ResponseCourseDto> resp = new ArrayList<>(courses.size());
+		
+		
 		for (Course course : courses) {
 			resp.add(this.toResponseDto(course));
 		}
 		return resp;
 	}
 
-	public CourseFile fromMultipartFileToCourseFile(MultipartFile file) {
+	public CourseFile fromMultipartFileToCourseFile(MultipartFile file)  {
 		
 		String filename = file.getResource().getFilename();
 		String type = StringUtils.getFilenameExtension(filename);
-		return new CourseFile(filename,type,file.getBytes());
+		try {
+			return new CourseFile(filename,type,file.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 		
 	}
 
