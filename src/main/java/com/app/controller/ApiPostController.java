@@ -42,9 +42,9 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @RestController
-@RequestMapping("/post")
+@RequestMapping("api/post")
 @Slf4j
-public class PostController {
+public class ApiPostController {
 
 	@Autowired
 	PostService service;
