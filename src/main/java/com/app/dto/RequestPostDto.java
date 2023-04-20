@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Data
@@ -32,7 +34,8 @@ public class RequestPostDto {
 	private String category;
 	
 	// this date must be in the future
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm")
 	private Date event_date;
 
 	/* 

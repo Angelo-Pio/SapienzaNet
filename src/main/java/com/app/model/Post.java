@@ -18,6 +18,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -63,14 +65,16 @@ public class Post {
 	// ? default value
 	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	private PostImage image;
-
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm")
 	@NotNull
 	@Column(name = "published_at")
 	private Date published_at;
 
 	// TODO correct date format and check that this date is in the future
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm")
 	@Column(nullable = true)
 	private Date event_date;
 

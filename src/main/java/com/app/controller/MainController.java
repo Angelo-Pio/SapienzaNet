@@ -42,10 +42,11 @@ public class MainController {
 		List<Category> categories = c_repo.findAll();
 		
 		
+		List<ResponsePostDto> posts = p_service.getAllPosts(null);
 		
 		model.addAttribute("categories", categories);
-		model.addAttribute("posts",p_service.getAllPosts(null));
-		log.info(categories.toString());
+		model.addAttribute("posts",posts);
+		log.info(posts.get(0).getPublished_at().toString());
 		return "html/forFun";
 	}
 	

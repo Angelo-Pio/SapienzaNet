@@ -2,7 +2,10 @@ package com.app.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.app.model.PostImage;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,8 +31,12 @@ public class ResponsePostDto {
 	// default value
 	private PostImage image;
 
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm")
 	private Date published_at;
 	
+	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
+	@JsonFormat(pattern = "dd-MM-yyyy HH:mm")
 	private Date event_date;
 
 	

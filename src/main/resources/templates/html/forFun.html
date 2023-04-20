@@ -132,7 +132,7 @@
 					<div class="event-info">
 						<p name="title" class="title" th:text="${p.getTitle()}">title</p>
 						<div class="separator"></div>
-						<p name="preview " class="info" th:text="${p.getEvent_date()} ? |event_date: ${p.getEvent_date().toString()}| : |published_at ${p.getPublished_at().toString()}|" >preview</p>
+						<p name="preview " class="info" th:with="date = ${p.getEvent_date()} " th:text="date != null ? |event_date: ${#dates.format( date , 'dd/mm/yyyy HH:mm')} | : |published_at ${#dates.format(date, 'dd/mm/yyyy HH:mm')}|" >preview</p>
 						
 						<div class="additional-info">
 							<p class="info" th:text="${p.getPreview()}">
