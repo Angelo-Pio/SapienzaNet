@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html th:insert="~{html/layout :: layout(~{html/components :: nav_args_forfun } , ~{:: #body} , ~{:: #head} )}" >
+<head id="head">
+<link rel="stylesheet" href="/css/forfun.css">
+</head>
+<body>
+	
+
+	<div id="body">
+	
+		
+		<div th:replace=" ~{html/components :: category_header }"></div>
+		<div th:replace=" ~{html/components :: scrolling_wrapper }"></div>
+	
+	</div>
+	
+	
+
+
+</body>
+</html>

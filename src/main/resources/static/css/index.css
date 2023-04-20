@@ -1,0 +1,123 @@
+/* remove scrollbar*/
+body::-webkit-scrollbar{
+  display: none;
+}
+
+*{
+  font-style: sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* backgorund image */
+.head-img{
+    background-color: #848484;
+    padding-top: 20rem;
+    padding-bottom: 20rem;
+    
+    background-size:cover;
+    background-position: center;
+    background-blend-mode:multiply ;
+    
+}
+/* buttons (for fun and education) */
+.btn{
+    background-color: rgb(28, 97, 165);
+    font-size: large;
+    padding: 14px;
+}
+/* about us section */
+.pic{
+    height: auto;
+    width:  500px;
+    
+  }
+.about{
+    width: 1130px;
+    max-width: 85%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+  }
+  .about-us{
+    height: 100vh;
+    width: 100%;
+    padding: 90px 0;
+    background: #fffdfd;
+  }
+  /* about us title */
+  .text h2{
+    font-size: 60px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    padding: 20px;
+  
+  }
+  span{
+    color: #4070f4;
+  }
+  .text{
+    width: 540px;
+  }
+  /* about us text */
+  .text p{
+    padding: 20px;
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: 1px;
+  }
+  
+
+  /* social's icons */
+  .fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+  }
+  .fa:hover {
+    opacity: 0.7;
+  }
+  
+  .fa-facebook {
+    background: #3B5998;
+    color: white;
+  }
+
+ /* our service */
+
+ .services{
+  width: 1130px;
+  max-width: 85%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content:space-around;
+}
+.our-services{
+  height: 100vh;
+  width: 100%;
+  padding: 90px 0;
+  background: #fffdfd;
+}
+
+ /* bottom of the page */
+.footer{
+  text-align: center;
+}
+
+  
+/* adjusting when on mobile */
+
+/*! TO DO */
+  @media screen and (min-width: 768px){
+    .head-img{
+        padding-top: 20rem;
+        padding-bottom: 20rem ;
+    }
+  }

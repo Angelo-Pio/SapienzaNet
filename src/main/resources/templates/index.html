@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" th:replace="~{html/layout :: layout(~{:: #nav_args} , ~{:: #body}, ~{}  )}" >
+<head > </head>
+<!-- fixed top navbar-->
+<body>
+	
+	<div id="body">
+	
+	<div hidden="true">
+		<ul class="navbar-nav" id="nav_args">
+			<li class="nav-item active"><a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#about">About
+						Us</a></li>
+				<li class="nav-item"><a class="nav-link" href="#ourServ">Services</a>
+				</li>
+		</ul>
+	</div>
+
+
+	<!--background image-->
+		<header class="head-img text-white text-center"
+			th:style="|background-image: url( @{/images/La-Sapienza-Roma-scaled.jpg} );|">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-9 mx-auto">
+						<h1>SapienzaNET</h1>
+						<!-- buttons -->
+						<button type="button" class="btn btn-primary btn-lg">Education</button>
+						<button type="button" class="btn btn-primary btn-lg">For
+							Fun</button>
+					</div>
+				</div>
+			</div>
+		</header>
+
+
+		<!-- Our services -->
+		<section class="our-services" id="ourServ">
+			<div class="services">
+				<img th:src="@{images/51407008322_94d228fe44_b.jpg}" class="pic">
+				<div class="text">
+					<h2>Our Services</h2>
+					<p>Qui deve essere spiegata brevemente lo scopo del sito, in
+						particolare spiegando come muoversi nelle due sezioni.</p>
+				</div>
+			</div>
+		</section>
+
+		<!--about us -->
+		<section class="about-us" id="about">
+			<div class="about">
+				<img th:src="@{images/marcopolo_foto1.jpg}" class="pic">
+				<div class="text">
+					<h2>About Us</h2>
+					<p>L'idea di SapienzaNET nasce da due studenti di Ingegneria
+						Informatica frquentati il terzo anno. Il nostro obiettivo è quello
+						di rendere più agevole la navigazione nel mare di informazioni che
+						concernono la vita universitaria.</p>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+
+</body>
+</html>
