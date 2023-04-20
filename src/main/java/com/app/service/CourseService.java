@@ -102,9 +102,7 @@ public class CourseService {
 		
 		Course course = repo.findById(course_code).get();
 		
-		
-		
-		Set<CourseFile> files =  course.getFiles();
+		List<CourseFile> files =  course.getFiles();
 		
 		if(files.contains(course_file) == true ) return false;
 		
@@ -115,6 +113,35 @@ public class CourseService {
 		
 		
 		return true;
+	}
+
+	public CourseFile retrieveFile(String filename, Integer course_code) {
+
+		Optional<Course> course= repo.findById(course_code);
+		
+		if(course.isEmpty() == true) return null;
+		
+		Optional<CourseFile> file = getFileFromCourse(filename,course.get());
+		
+		if(file.isEmpty()) return null;
+		
+		return file.get();
+		
+		
+	}
+
+	private Optional<CourseFile> getFileFromCourse(String filename, Course course) {
+
+		List<CourseFile> files = course.getFiles();
+		
+		for (CourseFile file : files) {
+			if(file.getFilename().equals(filename)) {
+				return Optional.of(file);
+			}
+		}
+		
+		
+		return Optional.empty();
 	}
 	
 	

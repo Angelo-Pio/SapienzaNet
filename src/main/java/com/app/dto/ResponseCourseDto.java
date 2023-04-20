@@ -1,5 +1,9 @@
 package com.app.dto;
 
+import java.util.List;
+
+import com.app.model.CourseFile;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -27,6 +31,11 @@ public class ResponseCourseDto {
 	private Integer year;
 	
 	private String style;
+	
+	private List<CourseFile> files;
+	
+	public void addFile(CourseFile file) { files.add(file);}
+	public void removeFile(CourseFile file) { files.remove(file);}
 	
 	
 }
