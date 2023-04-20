@@ -39,8 +39,8 @@ public class PostService {
 
 	@Autowired
 	PostMapper mapper;
-	
-	public Boolean createPost(RequestPostDto request, MultipartFile file) throws ValidationException{
+
+	public Boolean createPost(RequestPostDto request, MultipartFile file) throws ValidationException {
 
 		log.info("check if category exists");
 		Optional<Category> category = category_repo.findById(request.getCategory());
@@ -50,14 +50,13 @@ public class PostService {
 		}
 
 		log.info("Map and save PostImage obj");
-		
+
 		Optional<PostImage> image = mapper.fromMultiPartFileToModel(file);
-		if(image.isEmpty() == true) {
+		if (image.isEmpty() == true) {
 			log.info("cannot save image into the db");
 			return false;
 		}
-		
-		
+
 		log.info("map RequestPostDto to Post model");
 		Optional<Post> post = mapper.fromRequestPostDtoToModel(request, category.get(), image.get());
 
@@ -70,7 +69,7 @@ public class PostService {
 		post_repo.save(post.get());
 		return true;
 	}
-	
+
 	@Transactional
 	public Optional<ResponsePostDto> getOnePost(Integer id) {
 
@@ -93,20 +92,29 @@ public class PostService {
 	public List<ResponsePostDto> getAllPosts(HashMap<String, String> filters) {
 
 		List<Post> posts;
-		if (filters.get("event_date") == "true" ) {
-			log.info("sorting by more recent event-date");
-			posts = post_repo.findAllSortedByEvent_date();
-		} else {
+		List<ResponsePostDto> resp;
+
+		if (filters == null) {
+
 			log.info("sorting by published_at, this is the default sorting strategy");
 			posts = post_repo.findAllSortedByPublished_at();
-		}
-
-		List<ResponsePostDto> resp;
-		if (filters.containsKey("category")) {
-			log.info("filter by category");
-			resp = mapper.fromModelToResponsePostDtoList(posts, filters.get("category"));
-		} else {
 			resp = mapper.fromModelToResponsePostDtoList(posts, null);
+		} else {
+
+			if (filters.get("event_date") == "true") {
+				log.info("sorting by more recent event-date");
+				posts = post_repo.findAllSortedByEvent_date();
+			} else {
+				posts = post_repo.findAllSortedByPublished_at();
+			}
+
+			if (filters.containsKey("category")) {
+				log.info("filter by category");
+				resp = mapper.fromModelToResponsePostDtoList(posts, filters.get("category"));
+			}else {
+				resp = mapper.fromModelToResponsePostDtoList(posts, null);
+
+			}
 		}
 
 		return resp;
@@ -114,28 +122,23 @@ public class PostService {
 	}
 
 	public Optional<PostImage> getFile(String originalFilename) {
-		
+
 		Optional<PostImage> image = file_repo.getByFilename(originalFilename);
-		if(image.isEmpty()) {
+		if (image.isEmpty()) {
 			return Optional.empty();
 		}
 		return Optional.of(image.get());
-	
+
 	}
 
 	public boolean saveImage(MultipartFile file) throws Exception {
 
 		PostImage image = new PostImage(file.getBytes(), file.getName());
-		
+
 		file_repo.save(image);
-		
+
 		return true;
-		
+
 	}
 
-	
-
-	
-	
-	
 }
