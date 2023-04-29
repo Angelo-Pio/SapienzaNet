@@ -2,31 +2,32 @@
 body::-webkit-scrollbar{
   display: none;
 }
-
+body{
+  background-color:rgb(234, 249, 251);
+}
 *{
-  font-style: sans-serif;
+  font-family:'Open Sans';
 }
 
 html {
   scroll-behavior: smooth;
 }
-
-/* backgorund image */
 .head-img{
     background-color: #848484;
     padding-top: 20rem;
     padding-bottom: 20rem;
-    
+    background-image: url('img/La-Sapienza-Roma-scaled.jpg');
     background-size:cover;
     background-position: center;
     background-blend-mode:multiply ;
     
 }
-/* buttons (for fun and education) */
 .btn{
     background-color: rgb(28, 97, 165);
     font-size: large;
     padding: 14px;
+    
+    
 }
 /* about us section */
 .pic{
@@ -41,14 +42,14 @@ html {
     display: flex;
     align-items: center;
     justify-content:space-around;
+    
   }
   .about-us{
     height: 100vh;
     width: 100%;
     padding: 90px 0;
-    background: #fffdfd;
+    background-color:rgb(234, 249, 251);
   }
-  /* about us title */
   .text h2{
     font-size: 60px;
     font-weight: 600;
@@ -56,13 +57,14 @@ html {
     padding: 20px;
   
   }
+ 
   span{
     color: #4070f4;
   }
+  
   .text{
     width: 540px;
   }
-  /* about us text */
   .text p{
     padding: 20px;
     font-size: 18px;
@@ -103,21 +105,62 @@ html {
   height: 100vh;
   width: 100%;
   padding: 90px 0;
-  background: #fffdfd;
+  background-color:rgb(234, 249, 251);
+  
 }
 
  /* bottom of the page */
+
 .footer{
   text-align: center;
 }
 
   
-/* adjusting when on mobile */
+@media only screen and (max-width: 1200px){
+  .head-img{
+    padding-top: 20rem;
+    padding-bottom: 20rem ;
 
-/*! TO DO */
-  @media screen and (min-width: 768px){
-    .head-img{
-        padding-top: 20rem;
-        padding-bottom: 20rem ;
-    }
   }
+  
+  .pic{
+    height: auto;
+    width: 300px;
+    
+  }
+  .our-services{
+    padding-top: 300px;
+    padding-bottom: 300px;
+  }
+ 
+  .text p{
+    font-size: 15px;
+  }
+  .text h2{
+    font-size: 40px;
+    
+  } 
+  .footer{
+    padding-top: 200px;
+  }
+
+
+}
+@media screen and (max-width: 600px){
+  .footer{
+   padding-top: 500px;
+  }
+  .pic{
+   width: 200px;
+  }
+  .text h2{
+   font-size: 20px;
+  }
+  .text p{
+   font-size: 13px;
+  }
+ }
+
+
+
+ 

@@ -1,0 +1,144 @@
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: rgb(234, 249, 251);
+}
+
+* {
+	box-sizing: border-box;
+	font-family: 'Open Sans';
+}
+/* remove scrollbar*/
+*::-webkit-scrollbar {
+	display: none;
+}
+
+.p {
+	text-align: justify;
+}
+
+.logo {
+	float: right;
+	padding-top: 12px;
+}
+
+/* head of the page*/
+.head-img {
+	text-align: center;
+	border-radius: 20px;
+	background-color: #fbf9f9;
+	padding-top: 10rem;
+	padding-bottom: 5rem;
+	
+	background-size: cover;
+	background-position: center;
+	background-blend-mode: multiply;
+	color: white;
+}
+
+.content {
+	margin-left: 200px;
+	padding-left: 20px;
+}
+
+.file-section {
+	padding-top: 10px;
+	padding-left: 10px;
+	position: relative;
+}
+/* Style the side navigation */
+.sidenav {
+	height: 50%;
+	width: 200px;
+	position: absolute;
+	z-index: 1;
+	top: 20;
+	left: 20;
+	background-color: #e3dbdb;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	border-radius: 20px;
+}
+
+/* Side navigation links */
+.sidenav a {
+	color: rgb(78, 104, 148);
+	padding: 16px;
+	text-decoration: none;
+	display: block;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+	background-color: #849ad7;
+	color: black;
+}
+
+/* sezione centrale */
+.course {
+	border-radius: 30px;
+	padding-top: 40px;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 700px;
+	width: 80%;
+}
+
+.scrollspy-example .lessons {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.scrollspy-example .info-prof {
+	padding-top: 30px;
+	padding-bottom: 40px;
+}
+
+/* link section */
+.sources {
+	padding-bottom: 20px;
+}
+
+.p-3 {
+	border-radius: 20px;
+}
+
+.col .fa {
+	padding-top: 15px;
+	padding-left: 30px;
+	padding-bottom: 10px;
+}
+/* icone link */
+.fa {
+	padding-right: 50px;
+	font-size: 100px;
+}
+
+/* orari */
+.h1, h4 {
+	margin-top: 40px;
+}
+
+.schedule {
+	padding-top: 30px;
+}
+
+@media only screen and (max-width: 768px) {
+	/* For mobile phones: */
+	* {
+		font-size: small;
+	}
+	.sidenav {
+		width: 100px;
+	}
+	.content {
+		margin-left: 100px;
+	}
+	.fa {
+		padding-right: 10px;
+		font-size: 30px;
+	}
+}

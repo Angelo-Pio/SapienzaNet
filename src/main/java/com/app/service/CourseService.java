@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -70,28 +71,27 @@ public class CourseService {
 
 	}
 
-	public HashMap<String, List<ResponseCourseDto>> getAllCourses() {
+	public List<List<ResponseCourseDto>> getAllCourses() {
 
 		log.info("Starting to retrieve all courses...");
-		HashMap<String, List<ResponseCourseDto>> resultMap = new HashMap<>(3);
+		List<List<ResponseCourseDto>> res = new ArrayList<>(3);
 		
 		log.info("First Year courses...");
 		
 		
 		List<ResponseCourseDto> first_year = mapper.toListOfResponseDto(repo.findAllByYear(1) );
-		resultMap.put("first_year", first_year );
 		
 		log.info("Second Year courses...");
 		
 		List<ResponseCourseDto> second_year = mapper.toListOfResponseDto(repo.findAllByYear(2) );
-		resultMap.put("second_year", second_year);
 
 		log.info("Third Year courses...");
 		List<ResponseCourseDto> third_year = mapper.toListOfResponseDto(repo.findAllByYear(3) );
-		resultMap.put("third_year", third_year);
+		res.add(first_year);
+		res.add(second_year);
+		res.add(third_year);
 		
-		
-		return resultMap;
+		return res;
 	}
 
 	public Boolean storeFile(MultipartFile file, Integer course_code) {
