@@ -3,7 +3,6 @@ package com.app.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -97,9 +95,9 @@ public class ApiCourseController {
 
 //	READ
 	@GetMapping("show")
-	public ResponseEntity<Map<String, List<ResponseCourseDto>>> showAll() {
+	public ResponseEntity<List<List<ResponseCourseDto>>> showAll() {
 
-		HashMap<String, List<ResponseCourseDto>> resp = service.getAllCourses();
+		List<List<ResponseCourseDto>> resp = service.getAllCourses();
 		return new ResponseEntity<>(resp, HttpStatus.OK);
 
 	}
