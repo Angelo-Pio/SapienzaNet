@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
@@ -67,6 +68,10 @@ public class Course {
 	@Min(value = 1)
 	@Max(value = 3)
 	private Integer year;
+	
+	@Lob
+	private byte[] image;
+
 	
 //	There is the need to give a meaning to this this property
 	@Length(max=500)

@@ -30,6 +30,7 @@ public class CourseMapper {
 				.professor_details(course.getProfessor_details())
 				.professor_name(course.getName())
 				.files(course.getFiles())
+				.image(course.getImage())
 				.build();
 						
 	}

@@ -2,6 +2,8 @@ package com.app.dto;
 
 import java.util.List;
 
+import javax.persistence.Lob;
+
 import com.app.model.CourseFile;
 
 import lombok.Builder;
@@ -33,6 +35,9 @@ public class ResponseCourseDto {
 	private String style;
 	
 	private List<CourseFile> files;
+	
+	@Lob
+	private byte[] image;
 	
 	public void addFile(CourseFile file) { files.add(file);}
 	public void removeFile(CourseFile file) { files.remove(file);}

@@ -17,12 +17,14 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
 	rel="stylesheet">
+	
+
 
 </head>
 <body>
 	<main>
 		<!-- Navbar fixed top-->
-		<nav class="navbar fixed-top navbar-expand-lg bg-light">
+		<nav class="navbar fixed-top navbar-expand-lg bg-light" id="nav1">
 
 			<img th:src="@{/images/0000.png}" alt="Logo" width="180" class="logo">
 			<button class="navbar-toggler" type="button"
@@ -34,16 +36,15 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link " aria-current="page"
-						href="#">Home</a></li>
+						th:href="@{/}">Home</a></li>
 
 
 				</ul>
 			</div>
 		</nav>
 		<!--background image-->
-		<header class="head-img text-white text-center"
-			th:style="|background-image: url(@{/images/zarq.jpg});|">
-			<div class="container">
+		<header class="head-img text-white text-center" id="header">
+			<div class="container1">
 				<div class="row">
 					<div class="col-xl-9 mx-auto">
 						<h1 th:text="${course.getName()}">Course Name</h1>
@@ -56,26 +57,27 @@
 
 
 		<!-- course section-->
-		<div class="course">
+		<div class="course reveal">
 
-			<nav id="navbar-example2" class="navbar bg-light px-3 mb-3">
+			<nav id="navbar-example2" class="navbar bg-light px-3 mb-3 reveal">
 				<a class="navbar-brand" href="#" th:text="${course.getName()}">Course
 					Name</a>
 				<ul class="nav nav-pills">
 					<li class="nav-item"><a class="nav-link"
-						href="#scrollspyHeading1">Info del Corso</a></li>
+						href="#scrollspyLesson">Info del Corso</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="#scrollspyHeading2">Info Prof</a></li>
+						href="#scrollspyProf">Info Prof</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="#scrollspyHeading3">Risorse</a></li>
+						href="#scrollspyLinks">Risorse</a></li>
 
 				</ul>
 			</nav>
 
 			<!-- Side nav -->
-			<div class="sidenav">
-				<div class="file-section">
+			<div class="sidenav reveal">
+				<div class="file-section reveal">
 					<h5>File section</h5>
+					<div class="divider-1"> <span></span></div>
 
 				</div>
 					
@@ -91,20 +93,18 @@
 			</div>
 
 
-			<div class="content">
-				<div data-bs-spy="scroll" data-bs-target="#navbar-example2"
-					data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true"
-					class="scrollspy-example bg-light p-3 rounded-2" tabindex="0">
+			<div class="content reveal">
+
 					<!-- Scrollpy Section Lezioni-->
 					<h4 id="scrollspyLesson">Info Corso</h4>
-					<div class="lessons">
+					<div class="lessons reveal">
 						<p th:text="${course.getDetails()}">course details</p>
 
 
 					</div>
 					<!--Scrollpy section Schedule-->
 					<h4 id="scrollspyProf" th:text="|Prof. ${course.getProfessor_name()}|">Info Prof</h4>
-					<div class="info-prof">
+					<div class="info-prof reveal">
 
 						<p th:text="${course.getProfessor_details()}">Prof details</p>
 
@@ -113,10 +113,12 @@
 					<!-- risorse e link-->
 
 					<h4 id="scrollspyLinks">Risorse</h4>
-					<p>In questa sezione sono presenti i link di maggiore interesse</p>
-					<div class="sources">
+				
+					<div class="sources reveal">
 
-						<div class="container text-center" th:text="${course.getResources()}">
+						<div class="container text-center reveal" th:text="${course.getResources()}">
+							<p>In questa sezione sono presenti i link di maggiore interesse</p>
+
 							<!-- <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 								<div class="col">
 
@@ -152,40 +154,11 @@
 
 							</div> -->
 						</div>
-
-
-
-
-
-
-
-
-
-
-
-						<h4 id="scrollspySchedule">Mappa e Orario</h4>
-						<p></p>
-						<div class="schedule">
-							<!--mappa-->
-							<div class="mappa">
-								<iframe
-									src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.8348139282075!2d12.518764015281278!3d41.89640947922086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f6185205c9bfd%3A0x773e8360f9a9e5e!2sEdificio%20Marco%20Polo!5e0!3m2!1sit!2sit!4v1680959291107!5m2!1sit!2sit"
-									allowfullscreen="" loading="lazy"
-									referrerpolicy="no-referrer-when-downgrade"></iframe>
-							</div>
-
-
-							<!-- orario-->
-
-						</div>
-
-
 					</div>
+
 				</div>
-			</div>
-		</div>
-		</div>
-		</div>
+		</div>		
+		
 
 
 
@@ -204,6 +177,26 @@
 
 
 	</main>
-	<!-- <script src="index.js"></script> -->
+	      
+    <script type="text/javascript">
+		window.addEventListener('scroll',reveal);
+		function reveal(){
+		  var reveals =document.querySelectorAll('.reveal');
+		  for (var i=0; i<reveals.length;i++){
+			var windowheight=window.innerHeight;
+			var revealtop=reveals[i].getBoundingClientRect().top;
+			var revealpoint =150;
+  
+			// when we scroll down elements become active ->> see CSS 
+			if (revealtop<windowheight-revealpoint){
+			  reveals[i].classList.add('active');
+			}
+			else{
+			  reveals[i].classList.remove('active');
+			}
+		  }
+		}
+  
+	  </script>
 </body>
 </html>

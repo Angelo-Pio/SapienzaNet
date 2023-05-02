@@ -66,15 +66,15 @@ public class Post {
 	@OneToOne(optional = false, cascade = CascadeType.ALL)
 	private PostImage image;
 	
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	@NotNull
 	@Column(name = "published_at")
 	private Date published_at;
 
 	// TODO correct date format and check that this date is in the future
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	@Column(nullable = true)
 	private Date event_date;
 

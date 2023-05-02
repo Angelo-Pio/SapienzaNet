@@ -109,13 +109,25 @@ public class MainController {
 	}
 	
 	@GetMapping("/post/image/{id}")
-	public void showImage(@PathVariable("id") Integer id, HttpServletResponse response) throws IOException {
+	public void showPostImage(@PathVariable("id") Integer id, HttpServletResponse response) throws IOException {
 		
 		response.setContentType(MediaType.IMAGE_JPEG_VALUE);
 		
 		ResponsePostDto post = p_service.getOnePost(id).get();
 		
 		InputStream is = new ByteArrayInputStream(post.getImage().getData());
+		IOUtils.copy(is, response.getOutputStream());
+		
+	}
+	
+	@GetMapping("/course/{id}/image/")
+	public void showCourseImage(@PathVariable("id") Integer id, HttpServletResponse response) throws IOException {
+		
+		response.setContentType(MediaType.IMAGE_JPEG_VALUE);
+		
+		ResponseCourseDto dto = c_service.getOneCourse(id).get();
+		
+		InputStream is = new ByteArrayInputStream(dto.getImage());
 		IOUtils.copy(is, response.getOutputStream());
 		
 	}

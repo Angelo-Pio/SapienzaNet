@@ -30,13 +30,15 @@ public class ResponsePostDto {
 	
 	// default value
 	private PostImage image;
+	
+	
 
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date published_at;
 	
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
-	@JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private Date event_date;
 
 	

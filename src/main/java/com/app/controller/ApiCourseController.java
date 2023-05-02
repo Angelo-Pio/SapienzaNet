@@ -57,9 +57,9 @@ public class ApiCourseController {
 
 //	CREATE
 	@PostMapping("create")
-	public ResponseEntity<Boolean> create(@Valid @RequestBody Course course) {
+	public ResponseEntity<Boolean> create(@Valid @RequestPart("course") Course course, @RequestPart("image") MultipartFile image) {
 
-		Boolean resp = service.createCourse(course);
+		Boolean resp = service.createCourse(course,image);
 
 		return new ResponseEntity<>(resp, HttpStatus.OK);
 

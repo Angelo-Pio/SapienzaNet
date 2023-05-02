@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +29,7 @@ public class CourseService {
 	@Autowired
 	CourseMapper mapper;
 
-	public Boolean createCourse(Course course) {
+	public Boolean createCourse(Course course, MultipartFile image) {
 		log.debug("Starting Course creation...");
 
 		if (course == null) {
@@ -46,6 +47,12 @@ public class CourseService {
 			return false;
 		}
 		log.info("Course not found, course is new, saving into the db: OK");
+		try {
+			course.setImage(image.getBytes());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		repo.save(course);
 		return true;
 	}

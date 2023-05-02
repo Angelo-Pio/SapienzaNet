@@ -3,15 +3,30 @@ body::-webkit-scrollbar{
   display: none;
 }
 body{
-  background-color:rgb(234, 249, 251);
+  background-color:white;
 }
 *{
   font-family:'Open Sans';
 }
+.reveal{
+  position: relative;
+  opacity: 0;
+  transform: translateY(150px);
+  transition: all ease 2s;
+
+}
+
+
+.reveal.active {
+  transform: translateY(0px);
+  opacity: 1;
+}
+
 
 html {
   scroll-behavior: smooth;
 }
+
 .head-img{
     background-color: #848484;
     padding-top: 20rem;
@@ -23,11 +38,19 @@ html {
     
 }
 .btn{
-    background-color: rgb(28, 97, 165);
-    font-size: large;
-    padding: 14px;
-    
-    
+  font-size: 20px;
+  background-color: rgb(211, 210, 215);
+  box-shadow: rgb(65, 65, 72) ;
+  border-radius: 20px;
+  transition-duration: 0.3s;
+  cursor: pointer;
+  border: 0;
+}
+.btn:hover{
+  background-color: #606285;
+  color:white;
+  box-shadow:5px 5px 5px rgb(65, 65, 72) ;
+
 }
 /* about us section */
 .pic{
@@ -48,7 +71,7 @@ html {
     height: 100vh;
     width: 100%;
     padding: 90px 0;
-    background-color:rgb(234, 249, 251);
+    background-color:white;
   }
   .text h2{
     font-size: 60px;
@@ -70,6 +93,7 @@ html {
     font-size: 18px;
     line-height: 25px;
     letter-spacing: 1px;
+    
   }
   
 
@@ -105,9 +129,11 @@ html {
   height: 100vh;
   width: 100%;
   padding: 90px 0;
-  background-color:rgb(234, 249, 251);
+  background-color:white;
+ 
   
 }
+
 
  /* bottom of the page */
 
@@ -161,6 +187,3 @@ html {
   }
  }
 
-
-
- 
