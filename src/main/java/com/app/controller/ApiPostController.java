@@ -81,36 +81,35 @@ public class ApiPostController {
 	
 //	? READ by category 
 	
-	@ExceptionHandler(ValidationException.class)
-	public ResponseEntity<List<HashMap<String, String>>> handleParameterNotValid(ValidationException e) {
-		log.error("Argument not valid from controller callback");
-		List<HashMap<String, String>> res = new ArrayList<>();
-			
-			HashMap<String,String> map = new HashMap<>(2);
-			map.put("field", e.getField() );
-			map.put("message", e.getMessage());
-			res.add(map);
+	/*
+	 * @ExceptionHandler(ValidationException.class) public
+	 * ResponseEntity<HashMap<String, String>>
+	 * handleParameterNotValid(ValidationException e) {
+	 * log.error("Argument not valid from controller callback"); HashMap<String,
+	 * String> res = new HashMap();
+	 * 
+	 * for (ValidationException ex : e.getExceptions()) { res.put(ex.getField(),
+	 * ex.getMessage()); }
+	 * 
+	 * return new ResponseEntity<>(res,HttpStatus.BAD_REQUEST);
+	 * 
+	 * }
+	 */
+//	@ExceptionHandler({MethodArgumentNotValidException.class, ValidationException.class })
+	
+	@PostMapping("/validate")
+	public ResponseEntity<HashMap<String, String>> validate(@RequestBody RequestPostDto post) {
+
 		
-		return new ResponseEntity<>(res,HttpStatus.BAD_REQUEST);
+		Optional<HashMap<String,String>> map = service.validateRequest(post, null);
 		
-	}
-	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<List<HashMap<String, String>>> handleParameterNotValid(MethodArgumentNotValidException e) {
-		log.error("Argument not valid from controller callback");
-		
-		
-		List<HashMap<String, String>> res = new ArrayList<>();
-		
-		for(FieldError r : e.getFieldErrors()) {
-			
-			HashMap<String,String> map = new HashMap<>(2);
-			map.put("field", r.getField() );
-			map.put("message", r.getDefaultMessage());
-			res.add(map);
-		}			
+		if(map.isEmpty() == true) {
+			return new ResponseEntity<HashMap<String,String>>(HttpStatus.OK);
+		}else {
+			return new ResponseEntity<HashMap<String,String>>(map.get(),HttpStatus.OK);
+		}
 		
 		
-		return new ResponseEntity<>(res,HttpStatus.BAD_REQUEST);
 		
 	}
 	

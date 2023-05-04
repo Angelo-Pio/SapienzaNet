@@ -41,31 +41,16 @@ public class PostService {
 	@Autowired
 	PostMapper mapper;
 
-	public Boolean createPost(RequestPostDto request, MultipartFile file) throws ValidationException {
+	public Boolean createPost(RequestPostDto request, MultipartFile file) {
 
-		log.info("check if category exists");
-		Optional<Category> category = category_repo.findById(request.getCategory());
-		if (category.isPresent() == false) {
-			log.info("category does not exists");
-			throw new ValidationException("category", "The selected category does not exists");
+		Optional<HashMap<String, String>> validation = validateRequest(request, file);
+		if(validation.isEmpty() == false) {
+			log.info("Validation failed");
+			return false;
 		}
-
-		log.info("Map and save PostImage obj");
-
 		Optional<PostImage> image = mapper.fromMultiPartFileToModel(file);
-		if (image.isEmpty() == true) {
-			log.info("cannot save image into the db");
-			throw new ValidationException("image", "Image empty");
-		}
+		Optional<Category> category = category_repo.findById(request.getCategory());
 		
-		Date event_date = request.getEvent_date();
-		Date now = new Date();
-		if (event_date != null && event_date.before(now)) {
-			log.info("event date in the past, this is not allowed!");
-			log.info(event_date.toString() + now.toString());
-			throw new ValidationException("event_date", "Event date in the past, not allowed!");
-		}
-
 		log.info("map RequestPostDto to Post model");
 		Optional<Post> post = mapper.fromRequestPostDtoToModel(request, category.get(), image.get());
 
@@ -148,6 +133,45 @@ public class PostService {
 
 		return true;
 
+	}
+	
+	public Optional<HashMap<String,String>> validateRequest(RequestPostDto request, MultipartFile file){
+		
+		log.info("check if category exists");
+		Optional<Category> category = category_repo.findById(request.getCategory());
+		
+		HashMap<String,String> map =  new HashMap<>();
+		
+		if (category.isPresent() == false) {
+			log.info("category does not exists");
+			map.put("category", "The selected category does not exists");
+		}
+
+		log.info("Map and save PostImage obj");
+		
+		if(file != null) {
+			
+		Optional<PostImage> image = mapper.fromMultiPartFileToModel(file);
+		if (image.isEmpty() == true) {
+			log.info("cannot save image into the db");
+			map.put("image", "The selected image cannot be persisted");
+		}
+		}
+		
+		Date event_date = request.getEvent_date();
+		Date now = new Date();
+		if (event_date != null && event_date.before(now)) {
+			log.info("event date in the past, this is not allowed!");
+			log.info(event_date.toString() + now.toString());
+			map.put("event_date", "Event date in the past, should be in the future");
+		}
+		
+		if(map.isEmpty() == true) {
+			return Optional.empty();
+		}else {
+			return Optional.of(map);
+		}
+		
 	}
 
 }

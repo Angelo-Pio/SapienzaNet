@@ -18,48 +18,9 @@
 	rel="stylesheet">
 	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-
-<script>
-
-      function createPost() {
-	  const formData = new FormData();
-	  formData.append('image', $('#image')[0].files[0]);
-
-	  const post = {
-	    author: $('#author').val(),
-	    title: $('#title').val(),
-	    category: $('#category').val(),
-	    body: $('#body').val(),
-	    event_date: $('#date').val()
-	  };
-	  console.log(JSON.stringify(post));
-	  formData.append('post', new Blob([JSON.stringify(post)], { type: 'application/json' }));
-
-	  $.ajax({
-	    url: 'http://localhost:8080/api/post/create',
-	    type: 'POST',
-	    data: formData,
-	    contentType: false,
-	    processData: false,
-	    success: function(response) {
-	      console.log('Post created successfully:', response);
-	    },
-	    error: function(xhr, status, error) {
-	      console.error('Error creating post:', error);
-	    }
-	  });
-	}
-      
-      $(document).ready(function() {
-    	  $('#postForm').on('submit', function(event) {
-    	    event.preventDefault();
-    	    createPost();
-    	  });
-    	});
+<script type="text/javascript" th:src="@{/js/forFun.js}"></script>
 
 
-	
-</script>
 
 <title>For Fun</title>
 </head>
@@ -203,6 +164,8 @@
 	
 
 						</div>
+						
+						
 						<button class="action">Link</button>
 					</div>
 				</div>
@@ -225,31 +188,40 @@
         
             <label for="author">Autore</label>
             <input id="author" type="text" style="text-align: left; width: 40%;margin-right: 60%;">
-            <label for="title">Titolo</label>
-            <input id="title" type="text"  style="text-align: left; width: 40%;margin-right: 60%;">
-            <label for="category">Categoria</label>
+            <label for="author" id="author_lb" >Error Label</label>
             
+			<label for="title">Titolo</label>
+            <input id="title" type="text"  style="text-align: left; width: 40%;margin-right: 60%;">
+            <label for="title" id="title_lb" >Error Label</label>
+            
+			<label for="category">Categoria</label>
+            <label for="category" id="category_lb" >Error Label</label>
             <select id="category"   style="text-align: left; width: 40%;margin-right: 60%;">
-        
+				
                 <option style="text-align:left;" th:each="c : ${categories}" th:text="${c.getName()}" th:value="${c.getName()}"> category </option>
-        
-              </select>
+				
+			</select>
+			
             
             <label for="body" style="margin-top: 50px;">Event Details</label>
             <textarea id="body" name="body"  style="text-align: left;"></textarea>
-        
+            <label for="body" id="body_lb">Error Label</label>
+			
             <label for="event-date">Date Of Event</label>
-           <input type="date" name="date" id="date" style="text-align: left;">
-
-           <label for="upload-btn-wrapper">Select A File</label>
-           <div class="upload-btn-wrapper" style="margin-bottom: 30px;">
-            <button class="btn">Upload</button>
-            <input type="file" name="image" id="image" />
+			<input type="date" name="date" id="date" style="text-align: left;">
+            <label for="event-date" id="date_lb"name="date_lb" >Error Label</label>
+			
+			<label  for="upload-btn-wrapper">Select A File</label>
+			<div class="upload-btn-wrapper" style="margin-bottom: 30px;">
+				<button class="btn">Upload</button>
+				<input type="file" name="image" id="image" />
+				<label for="image" id="image_lb" >Error Label</label>
           </div>
         
            
             <button type="reset">Reset</button>
             <button type="submit">Submit</button>
+           
           </form>
              
                            
