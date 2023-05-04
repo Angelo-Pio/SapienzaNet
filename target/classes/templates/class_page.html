@@ -43,8 +43,7 @@
 			</div>
 		</nav>
 		<!--background image-->
-		<header class="head-img text-white text-center" id="header">
-			<img th:src="@{|/course/${course.getClass_code()}/image|}">
+		<header class="head-img text-white text-center" id="header" th:style="|background-image : url(@{|/course/${course.getClass_code()}/image/|})|">
 			<div class="container1">
 				<div class="row">
 					<div class="col-xl-9 mx-auto">
