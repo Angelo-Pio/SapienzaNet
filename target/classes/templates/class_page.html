@@ -116,9 +116,12 @@
 				
 					<div class="sources reveal">
 
-						<div class="container text-center reveal" th:text="${course.getResources()}">
+<!--  Questo [(${course.getResources()})] che vedi sotto serve per fare il diplay dell'html conservato nel db-->
+							[(${course.getResources()})]
+							
+						<div class="container text-center reveal" >
 							<p>In questa sezione sono presenti i link di maggiore interesse</p>
-
+							
 							<!-- <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
 								<div class="col">
 
