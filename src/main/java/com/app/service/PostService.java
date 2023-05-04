@@ -1,6 +1,7 @@
 package com.app.service;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -54,14 +55,22 @@ public class PostService {
 		Optional<PostImage> image = mapper.fromMultiPartFileToModel(file);
 		if (image.isEmpty() == true) {
 			log.info("cannot save image into the db");
-			return false;
+			throw new ValidationException("image", "Image empty");
+		}
+		
+		Date event_date = request.getEvent_date();
+		Date now = new Date();
+		if (event_date != null && event_date.before(now)) {
+			log.info("event date in the past, this is not allowed!");
+			log.info(event_date.toString() + now.toString());
+			throw new ValidationException("event_date", "Event date in the past, not allowed!");
 		}
 
 		log.info("map RequestPostDto to Post model");
 		Optional<Post> post = mapper.fromRequestPostDtoToModel(request, category.get(), image.get());
 
 		if (post.isEmpty()) {
-			log.info("error in attribute event date ");
+			log.info("post is empty error");
 			return false;
 		}
 

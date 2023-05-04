@@ -28,7 +28,7 @@ public class CourseMapper {
 				.style(course.getStyle())
 				.resources(course.getResources())
 				.professor_details(course.getProfessor_details())
-				.professor_name(course.getName())
+				.professor_name(course.getProfessor_name())
 				.files(course.getFiles())
 				.image(course.getImage())
 				.build();

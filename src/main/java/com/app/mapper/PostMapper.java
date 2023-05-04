@@ -22,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PostMapper {
 
 	public Optional<Post> fromRequestPostDtoToModel(RequestPostDto request, Category category, PostImage image) {
-		log.debug("mapping...");
+		log.info("mapping...");
 
 		Date date = new Date();
 
@@ -30,19 +30,15 @@ public class PostMapper {
 
 		preview = preview.substring(0, 40) + "...";
 
-		Date event_date = request.getEvent_date();
-		if (event_date != null && event_date.before(date)) {
-			log.debug("event date in the past, this is not allowed!");
-			return Optional.empty();
-		}
+		
 		
 
 		return Optional.of(Post.builder().author(request.getAuthor()).title(request.getTitle()).body(request.getBody())
-				.category(category).event_date(request.getEvent_date())
+				.category(category)
+				.event_date(request.getEvent_date())
 				.image(image)
-
-				.published_at(date).preview(preview)
-
+				.published_at(date)
+				.preview(preview)
 				.build());
 	}
 

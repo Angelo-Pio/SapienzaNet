@@ -30,8 +30,9 @@
 	    title: $('#title').val(),
 	    category: $('#category').val(),
 	    body: $('#body').val(),
-	    date: $('#date').val()
+	    event_date: $('#date').val()
 	  };
+	  console.log(JSON.stringify(post));
 	  formData.append('post', new Blob([JSON.stringify(post)], { type: 'application/json' }));
 
 	  $.ajax({
@@ -181,16 +182,23 @@
 							<div class="info-event">
 
 							<div class="event-description">
-								<p>
+								<p th:text="${p.getBody()}">
 
 								</p>
 							</div>
 							</div>
 							<footer>
 								<div class="small-container2">
-									<p name="author" class="author"th:text="${p.getAuthor()}">Autore,<date name="published-at" class="published-at"th:with="date = ${p.getPublished_at()} "
-										th:text="|published_at ${#dates.format(date, 'dd/mm/yyyy')}|"> 06/03/2023</date></p>
+									<p name="author" class="author"th:text="${p.getAuthor()}">Autore
+										
+										</p>
 								</div>
+								
+								<div class="small-container2">
+								<p name="published-at" class="published-at"th:with="date = ${p.getPublished_at()} "
+										th:text="|published : ${#dates.format(date, 'dd/MM/yyyy')}|"> published_at</p>
+										</div>
+								
 							</footer>
 	
 
@@ -198,49 +206,7 @@
 						<button class="action">Link</button>
 					</div>
 				</div>
-				 <!--Card--> 
-				 <div class="item-container">
-					<!--image for the event-->
-					<div class="img-container">
-						<img src="/img/foto-allestimenti-interni-bar-locali-immagine-incentivante-13.jpg" alt="Event image" name="image_id">
-					</div>
-		
-					<div class="body-container" name="">
-						<div class="overlay"></div>
-						
-						<div class="event-info">
-							<p name="title" class="title">title</p>
-							<div class="small-container">
-							<p name="place" class="place">Roma,<date name="date-event" class="date-event"> 26/03/2002</date></p></div>
-							<div class="info-event">
-								
-								<div class="event-description">
-									<p>
-										Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-										Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-										when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-										It has survived not only five centuries, but also the leap into electronic typesetting,
-										remaining essentially unchanged. It was popularised in the 1960s with the release of 
-										Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing 
-										software like Aldus PageMaker including versions of Lorem Ipsum.
-		
-		
-									</p>
-									
-							</div>
-						</div>
-		
-						<footer>
-							<div class="small-container2">
-							<p name="author" class="author">Autore,<date name="published-at" class="published-at"> 06/03/2023</date></p>
-						</div>
-						</footer>
-							
-							
-						</div>
-						<button class="action">Link</button>
-					</div>
-				</div>
+				
 
 
 			
@@ -258,19 +224,19 @@
           <form id="postForm" th:action="@{/api/post/create}" method="post" enctype="multipart/form-data">
         
             <label for="author">Autore</label>
-            <input id="author" type="text" required="" style="text-align: left; width: 40%;margin-right: 60%;">
+            <input id="author" type="text" style="text-align: left; width: 40%;margin-right: 60%;">
             <label for="title">Titolo</label>
-            <input id="title" type="text" required="" style="text-align: left; width: 40%;margin-right: 60%;">
+            <input id="title" type="text"  style="text-align: left; width: 40%;margin-right: 60%;">
             <label for="category">Categoria</label>
             
-            <select id="category"  required="" style="text-align: left; width: 40%;margin-right: 60%;">
+            <select id="category"   style="text-align: left; width: 40%;margin-right: 60%;">
         
-                <option style="text-align:left;" th:each="c : ${categories}" th:text="${c.getName()}"> category </option>
+                <option style="text-align:left;" th:each="c : ${categories}" th:text="${c.getName()}" th:value="${c.getName()}"> category </option>
         
               </select>
             
             <label for="body" style="margin-top: 50px;">Event Details</label>
-            <textarea id="body" name="body" required="" style="text-align: left;"></textarea>
+            <textarea id="body" name="body"  style="text-align: left;"></textarea>
         
             <label for="event-date">Date Of Event</label>
            <input type="date" name="date" id="date" style="text-align: left;">

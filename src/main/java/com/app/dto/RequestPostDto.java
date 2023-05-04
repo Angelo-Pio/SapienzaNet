@@ -34,8 +34,8 @@ public class RequestPostDto {
 	private String category;
 	
 	// this date must be in the future
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	@JsonFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date event_date;
 
 	/* 

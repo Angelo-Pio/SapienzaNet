@@ -18,6 +18,49 @@
 	rel="stylesheet">
 <link rel="stylesheet" th:href="@{/css/education.css}" 
 	href="/css/education.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
+
+      function createCourse() {
+	  const formData = new FormData();
+	  formData.append('image', $('#image')[0].files[0]);
+
+	  const course = {
+	    class_code : $('#course_id').val(),
+	    name : $('#name').val(),
+	    details: $('#details').val(),
+	    resources: $('#resources').val(),
+	    professor_name: $('#professor_name').val(),
+	    professor_details: $('#professor_details').val(),
+	    year: $('#year').val()
+	  };
+	  formData.append('course', new Blob([JSON.stringify(course)], { type: 'application/json' }));
+
+	  $.ajax({
+	    url: 'http://localhost:8080/api/course/create',
+	    type: 'POST',
+	    data: formData,
+	    contentType: false,
+	    processData: false,
+	    success: function(response) {
+	      console.log('Post created successfully:', response);
+	    },
+	    error: function(xhr, status, error) {
+	      console.error('Error creating post:', error);
+	    }
+	  });
+	}
+      
+      $(document).ready(function() {
+    	  $('#courseForm').on('submit', function(event) {
+    	    event.preventDefault();
+    	    createCourse();
+    	  });
+    	});
+
+
+	
+</script>
 
 </head>
 <body>
@@ -73,7 +116,7 @@
 
 		<div class="scrolling-wrapper">
 
-			<div class="card" th:each=" c : ${courses.get(1)}"
+			<div class="card" th:each=" c : ${courses.get(0)}"
 				th:with="course = ${c}">
 				<div th:each="d : ${course}">
 					<h2 th:text="${d.getName()}">Course Name</h2>
@@ -160,7 +203,7 @@
 
 		<div class="scrolling-wrapper">
 
-			<div class="card" th:each=" c : ${courses.get(1)}"
+			<div class="card" th:each=" c : ${courses.get(2)}"
 				th:with="course = ${c}">
 				<div th:each="d : ${course}">
 					<h2 th:text="${d.getName()}">Course Name</h2>
@@ -202,32 +245,41 @@
         <!--FORM -->
         <div class="contact-form reveal">
           <span class="heading"> New Post</span>
-		  <form>
+		  <form id="courseForm">
       
 			<label for="name">Class Name</label>
-			<input type="text" required="" style="text-align: left; width: 40%;margin-right: 60%;">
-			<label for="id"> Class ID</label>
-			<input type="integer" required="" style="text-align: left; width: 40%;margin-right: 60%;" >
-			<label for="prof-name">Professor</label>
-			<input type="text" required="" style="text-align: left; width: 40%;margin-right: 60%;">
+			<input id="name" type="text"  style="text-align: left; width: 40%;margin-right: 60%;">
+			<label for="course_id"> Course ID</label>
+			<input id="course_id" type="integer"  style="text-align: left; width: 40%;margin-right: 60%;" >
 			
+			 <label for="year">Anno</label>
+            <select id="year"  style="text-align: left; width: 40%;margin-right: 60%;">
+        
+                <option style="text-align:left;" value="1"> Primo Anno </option>
+                <option style="text-align:left;" value="2"> Secondo Anno </option>
+                <option style="text-align:left;" value="3"> Terzo Anno </option>
+        
+              </select>
 			
-			<label for="class-details" style="margin-top: 10px;">Class Details</label>
-			<textarea id="class-details" name="class-details" required="" style="text-align: left;"></textarea>
+			<label for="professor_name">Professor</label>
+			<input type="text"  id="professor_name" style="text-align: left; width: 40%;margin-right: 60%;">
+			
+			<label for="professor_details" style="margin-top: 10px;">Prof Details</label>
+			<textarea id="professor_details" name="prof-details"  style="text-align: left;"></textarea>
   
-			<label for="prof-details" style="margin-top: 10px;">Prof Details</label>
-			<textarea id="prof-details" name="prof-details" required="" style="text-align: left;"></textarea>
+			<label for="details" style="margin-top: 10px;">Class Details</label>
+			<textarea id="details" name="class-details" style="text-align: left;"></textarea>
   
 			
-			<label for="useful-resources" style="margin-top: 10px;">Useful Resources</label>
-			<textarea id="useful-resources" name="useful-resources" required="" style="text-align: left;"></textarea>
+			<label for="resources" style="margin-top: 10px;">Useful Resources</label>
+			<textarea id="resources" name="useful-resources" style="text-align: left;"></textarea>
 		
 		
   
 		   <label for="upload-btn-wrapper">Select A File</label>
 		   <div class="upload-btn-wrapper" style="margin-bottom: 30px;">
 			<button class="btn1">Upload</button>
-			<input type="file" name="myfile" />
+			<input type="file" name="myfile" id="image" />
 		  </div>
 		
 		   

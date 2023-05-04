@@ -1,6 +1,5 @@
 package com.app.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
 import lombok.AllArgsConstructor;
@@ -70,6 +70,7 @@ public class Course {
 	private Integer year;
 	
 	@Lob
+//	@Type(type = "org.hibernate.type.ImageType")
 	private byte[] image;
 
 	
