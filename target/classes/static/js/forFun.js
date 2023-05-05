@@ -13,6 +13,7 @@ function createPost() {
 
 	if (validatePost(post) == true) {
 		console.log("Post is correct");
+		
 		formData.append('post', new Blob([JSON.stringify(post)], { type: 'application/json' }));
 		sendRequestPostDto(formData);
 	} else {
