@@ -16,6 +16,7 @@ function createPost() {
 		formData.append('post', new Blob([JSON.stringify(post)], { type: 'application/json' }));
 		sendRequestPostDto(formData);
 	} else {
+		console.log("post not correct");
 		return false;
 	}
 
@@ -31,8 +32,8 @@ $(document).ready(function () {
 });
 
 function validatePost(post) {
-
-	checkFormFields(post);
+	var res2 = true;
+	var res1 = checkFormFields(post);
 
 	$.ajax({
 		url: 'http://localhost:8080/api/post/validate',
@@ -47,8 +48,9 @@ function validatePost(post) {
 				console.log(response);
 				console.log("Errors in the form input, displaying errors");
 				displayErrors(response);
-
+				res2 = false;
 			} else {
+				res2 = true;
 			}
 
 			//   console.log('Request sent successfully:', response);
@@ -57,6 +59,12 @@ function validatePost(post) {
 			console.error('Error creating post:', error);
 		}
 	});
+
+	if(res1 == false || res2 == false){
+		return false;
+	}else{
+		return true;
+	}
 }
 
 function sendRequestPostDto(formData) {
@@ -92,24 +100,33 @@ function displayErrors(response) {
 
 function checkFormFields(post) {
 
+	var res = true;
 	if (post["title"].length > 255) {
 		$(title_lb).text("Max title length is 255");
+		res = false;
 	}
 	if (post["title"] == "") {
 		$(title_lb).text("Title cannot be empty");
+		res = false;
 	}
 	if (post["author"] == "") {
 		$(author_lb).text("Author cannot be empty");
+		res = false;
 	}
 	if (   post["author"].length < 3 ||  post["author"].length > 255) {
 		$(author_lb).text("Author name should be at least 3 characters long and 255 maximum long");
+		res = false;
 	}
 	if (post["body"] == "") {
 		$(body_lb).text("body cannot be empty");
+		res = false;
 	}
 	if (   post["body"].length < 50 ||  post["body"].length > 1000) {
 		$(body_lb).text("Body should be at least 50 characters long and 1000 maximum long");
+		res = false;
 	}
+
+	return res;
 
 
 
