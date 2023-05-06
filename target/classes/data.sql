@@ -31,5 +31,3 @@ VALUES (1010, 'Dettagli del corso a breve disponibili', 'Public Speaking', 'Dr. 
 INSERT INTO categories (name) values ('work');
 INSERT INTO categories (name) values ('fun');
 INSERT INTO categories (name) values ('event');
-INSERT INTO public.post_image (id, data, filename) VALUES (1, 21236, 'IMG-251.jpg');
-INSERT INTO public.posts (id, author, body, event_date, preview, published_at, title, category, image_id) VALUES (1, 'sadas', 'fdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsafdsa', NULL, 'fdsafdsafdsafdsafdsafdsafdsafdsafdsafdsa...', '2023-05-06 13:56:44.412', 'dsf', 'work', 1);
