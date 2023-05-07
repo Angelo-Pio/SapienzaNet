@@ -58,7 +58,6 @@
 
 		<!-- course section-->
 		<div class="course reveal">
-
 			<nav id="navbar-example2" class="navbar bg-light px-3 mb-3 reveal">
 				<a class="navbar-brand" href="#" th:text="${course.getName()}">Course
 					Name</a>
@@ -69,7 +68,6 @@
 						href="#scrollspyProf">Info Prof</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="#scrollspyLinks">Risorse</a></li>
-
 				</ul>
 			</nav>
 
@@ -77,8 +75,7 @@
 			<div class="sidenav reveal">
 				<div class="file-section reveal">
 					<h5>File section</h5>
-					<div class="divider-1"> <span></span></div>
-
+					<div class="divider-2"> <span></span></div>
 				</div>
 					
 			<a th:href="@{|/course/${course.getClass_code()}/download?filename=${file.getFilename()}|}"
@@ -94,91 +91,84 @@
 
 
 			<div class="content reveal">
-
 					<!-- Scrollpy Section Lezioni-->
 					<h4 id="scrollspyLesson">Info Corso</h4>
-					<div class="lessons reveal">
+					<div class="divider-1"> <span></span></div>
+					<div class="lessons">
 						<p th:text="${course.getDetails()}">course details</p>
-
-
+						<!-- FILE UPLOAD-->
+						<div class="input-group mb-3" style="border-radius: 20px;">
+							<input type="file" class="form-control" id="inputGroupFile02" style="border-radius: 20px;">
+							<input type="submit" class="input-group-text" for="inputGroupFile02" style="border-radius: 20px;"></input>
+						  </div>
 					</div>
 					<!--Scrollpy section Schedule-->
 					<h4 id="scrollspyProf" th:text="|Prof. ${course.getProfessor_name()}|">Info Prof</h4>
-					<div class="info-prof reveal">
-
+					<div class="divider-1"> <span></span></div>
+					<div class="info-prof ">
 						<p th:text="${course.getProfessor_details()}">Prof details</p>
-
 					</div>
-
 					<!-- risorse e link-->
-
 					<h4 id="scrollspyLinks">Risorse</h4>
-				
-					<div class="sources reveal">
+					<div class="divider-1"> <span></span></div>
 
-<!--  Questo [(${course.getResources()})] che vedi sotto serve per fare il diplay dell'html conservato nel db-->
+					<div class="sources">
+
+<!--  Questo [(${course.getResources()})] che vedi sotto serve per fare il display dell'html conservato nel db-->
 							[(${course.getResources()})]
 							
-						<div class="container text-center reveal" >
+						
 							<p>In questa sezione sono presenti i link di maggiore interesse</p>
 							
-							<!-- <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+							 <div class="row row-cols-3 row-cols-lg-5 g-2 g-lg-3">
 								<div class="col">
 
 
 									<a
-										href="https://www.youtube.com/watch?v=qX23Cs6mSRU&list=PLAQopGWlIcyZlCmXWE_KvtMi57Mwbyf6C"
-										class="lezioni-yt"> <i class="fa fa-youtube-play"
-										style="color: rgb(201, 52, 52)"></i>
+										href="#https://www.youtube.com/@videodiag-sapienzauniversi4757/playlists?view=50&sort=dd&shelf_id=2" class="lezioni-yt">
+										<i class="fa fa-youtube-play" style="color: rgb(201, 52, 52)"></i>
 									</a>
-									<div class="p-3 border bg-light">Youtube Lessons</div>
+									<div class="p-3 border " style="text-align: center;">Youtube Lessons</div>
 								</div>
 								<div class="col">
 
 									<a href="#" class="#"> <i class="fa fa-folder-open"
 										aria-hidden="true" style="color: rgb(84, 57, 156)"></i>
 									</a>
-									<div class="p-3 border bg-light">Classroom</div>
+									<div class="p-3 border " style="text-align: center;">Prof Website</div>
 								</div>
 								<div class="col">
 
-									<a href="#" class="#"> <i class="fa fa-university"
+									<a href="#https://corsidilaurea.uniroma1.it/it/corso/2022/31810/home" class="#"> <i class="fa fa-university"
 										aria-hidden="true" style="color: rgb(50, 82, 134)"></i>
 									</a>
-									<div class="p-3 border bg-light">Istitutional Website</div>
+									<div class="p-3 border" style="text-align: center;">Istitutional Website</div>
 								</div>
 								<div class="col">
 
-									<a href="#" class="#"> <i class="fa fa-whatsapp"
+									<a href="#https://chat.whatsapp.com/H55IGEqG1Ph5NEY2elDYHm" class="#"> <i class="fa fa-whatsapp"
 										aria-hidden="true" style="color: rgb(143, 211, 48)"></i>
 									</a>
-									<div class="p-3 border bg-light">Chat Groups</div>
+									<div class="p-3 border "style="text-align: center;" >Chat Groups</div>
 								</div>
+								<div class="col">
+                  
+									<a href="# https://www.google.com/maps/place/Edificio+Marco+Polo/@41.8963187,12.5202463,15z/data=!4m5!3m4!1s0x0:0x773e8360f9a9e5e!8m2!3d41.8963187!4d12.5202463?shorturl=1" class="#">
+									  <i class="fa fa-map-marker" aria-hidden="true" ></i>
+				  
+									</a>
+									<div class="p-3 border " style="text-align: center;">Location</div>
+									
+								  </div>
 
-							</div> -->
+
+							 
 						</div>
 					</div>
 
 				</div>
 		</div>		
 		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	</main>
 	      
     <script type="text/javascript">

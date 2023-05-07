@@ -100,14 +100,12 @@ html {
   width:180px;
   text-align: center;
   border-radius: 20px;
-  background-color: #b8c5cf;
   box-shadow:5px 5px 10px rgb(86, 96, 108);
 }
 .small-container2{
   width:180px;
   text-align: center;
   border-radius: 20px;
-  background-color: #e9edf1;
   box-shadow:5px 5px 10px rgb(194, 200, 207);
   
 }
@@ -186,9 +184,10 @@ html {
   margin-bottom: 16px;
 }
 
+
 .info-event {
   text-align: center;
-  padding-top: 80px;
+  
   width: 80%;
   height: 50%;
   margin-top: 50px;
@@ -197,16 +196,23 @@ html {
   border-radius: 30px;
   overflow-x: scroll;
   max-height: 300px;
+  margin-bottom: 10px;
+ 
   
   
 }
+.info-event:hover{
+  box-shadow:5px 5px 5px 5px #bec8cf; ;
+}
 .info-event .event-description{
-  font-size: 15px;
+  font-size: 13px;
   text-align: center;
   
-  margin-left: 3px;
-  margin-right: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
   overflow-y: scroll;
+  margin-top: 7px;
+  margin-bottom: 5px;
   
   
 
@@ -383,13 +389,18 @@ margin-bottom: 10px;
 
 .btn {
 border: 2px solid gray;
-color: rgb(117, 114, 114);
+color: rgb(88, 86, 101);
 background-color: white;
 padding: 8px 20px;
 border-radius: 8px;
 font-size: 20px;
 font-weight: bold;
+box-shadow: 3px 3px 3px rgb(122, 119, 119);
 
+
+}
+.btn:hover{
+  box-shadow: 10px 10px 10px rgb(64, 63, 63);
 }
 .upload-btn-wrapper input[type=file] {
 font-size: 50px;
@@ -413,6 +424,12 @@ transition: transform 0.3s ease-in-out;
 .contact-form button[type="reset"]:hover {
 transform: scale(1.1);
 transition: transform 0.3s ease-in-out;
+}
+
+.error{
+  color: red;
+  margin-top: -20px;
+  font-size: 15px;
 }
 
 

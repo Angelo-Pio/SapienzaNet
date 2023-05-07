@@ -143,12 +143,9 @@ iframe{
     margin-bottom: 200px;
     width: 80%;
     box-shadow:5px 5px 10px rgb(170, 174, 175);
-    
-   
-
 }
 .course:hover{
-    box-shadow:10px 10px 15px rgb(3, 18, 37);
+    box-shadow: 10px 10px 10px 15px rgb(3, 18, 37);
 }
 
 
@@ -205,27 +202,29 @@ iframe{
 
 .p-3{
     
-    border-radius: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  border-radius: 50px;
+
 
     
 }
 .col .fa{
-  padding-top: 15px;
- padding-left: 30px;
- padding-bottom: 10px;
- margin-left: 10px;
- margin-right: 10px;
+  margin-right: 10px; 
+  margin-bottom: 10px;
+  margin-left: 45px;
  
 }
 /* icone link */
 .fa{
-    padding-right: 50px;
+   
     font-size: 70px;
 
 }
 .fa:hover{
-    border-radius: 30px;
-    box-shadow:15px 15px 20px black;
+  font-size: 90px;
+  border-radius: 50px;
 }
 
 /* orari */
@@ -248,18 +247,48 @@ iframe{
 
 }
 .divider-1 {
-    border-bottom: 2px solid rgb(143, 143, 223);
-    background-color: rgb(143, 143, 223);
-    height: 2px;
-    margin: 0.5em 0px 1.5em;
+  border-bottom: 2px solid rgb(143, 143, 223);
+  background-color: rgb(143, 143, 223);
+  height: 2px;
+  margin: 0.5em 0px 1.5em;
 }
 
 .divider-1 span {
-    display: block;
-    width: 50px;
-    height: 2px;
-    background-color: rgb(223, 212, 238);
+  display: block;
+  width: 50px;
+  height: 2px;
+  background-color: rgb(223, 212, 238);
 }
+.divider-2 {
+border-bottom: 2px solid rgb(91, 87, 87);
+background-color: rgb(36, 36, 37);
+height: 2px;
+margin: 0.5em 0px 1.5em;
+}
+
+.divider-2 span {
+display: block;
+width: 50px;
+height: 2px;
+background-color: rgb(223, 212, 238);
+}
+
+.input-group{
+  width: 98%;
+  border-radius: 30px;
+  margin-right: 20px;
+}
+
+.input-group-text{
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: rgb(191, 193, 193);
+}
+.input-group-text:hover{
+  background-color: rgb(167, 169, 169);
+  box-shadow:2px 2px 2px rgb(98, 97, 97);
+}
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     *{
@@ -273,10 +302,7 @@ iframe{
         
         margin-left: 100px;
     }
-    .fa{
-        padding-right: 10px;
-        font-size: 30px;
-    }
+   +
    
    
     

@@ -159,9 +159,11 @@ public class PostService {
 		}
 		String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());
 		log.info(extension);	
-		if (extension.equals("jpg") == false) {
+		if (extension.equals("jpg") == true || extension.equals("jpeg") == true || extension.equals("png") == true) {
+		}else {
 			log.info("cannot save image into the db");
-			map.put("image", "Image format supported: jpg");
+			map.put("image", "Image format supported: jpg, jpeg , png");
+			
 		}
 		
 		

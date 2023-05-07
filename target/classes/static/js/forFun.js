@@ -27,11 +27,31 @@ function createPost() {
 }
 
 $(document).ready(function() {
-	$('#postForm').on('submit', function(event) {
+	$(author_lb).text("");
+	$(title_lb).text("");
+	$(body_lb).text("");
+
+	
+	$('#postForm').on('submit', function (event) {
 		event.preventDefault();
 		createPost();
 	});
+	$('#postForm').on('reset', function (event) {
+	
+		resetForm();
+		
+	});
+
+
 });
+
+function resetForm() {
+	var elems = document.querySelectorAll(".error");
+	elems.forEach(itm => {
+	  document.getElementById(itm.id).innerHTML = ''
+	})
+  }
+
 
 function validatePost(post) {
 	var res2 = true;

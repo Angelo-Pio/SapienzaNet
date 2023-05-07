@@ -45,7 +45,7 @@
 					data-bs-toggle="dropdown" aria-expanded="false"> Categories </a>
 					<ul class="dropdown-menu">
 						<li th:each="c : ${categories}"><a class="dropdown-item"
-							th:href="|#${c.name}|" th:text="${c.getName()}">Category</a></li>
+							th:href="|#${c.getName()}|" th:text="|#${c.getName()}|">Category</a></li>
 					</ul></li>
 			</ul>
 		</div>
@@ -115,7 +115,7 @@
 
 		<div th:each="c : ${categories}" >
 		
-			<div class="categoryHeader" th:with = "cat = ${c.getName()}" th:id="cat_header" >
+			<div class="categoryHeader" th:with = "cat = ${c.getName()}" th:id="${c.getName()}" >
 				<h1 th:text = "${#strings.capitalize(c.getName() )} ">Category Name</h1>
 				<h4>scroll down to visualize</h4>
 			</div>
@@ -123,54 +123,49 @@
 			<div class="scrolling-wrapper reveal" >
 
 
-				<!-- event cards-->
-				<div class="item-container" th:each="p : ${posts}" th:if="${p.getCategory()} == ${c.getName()}">
+				
 
+				
+				 <!--Card--> 
+				 <div class="item-container" th:each="p : ${posts}" th:if="${p.getCategory()} == ${c.getName()}">
 					<!--image for the event-->
-					<div class="img-container">
-						<img th:src="@{|/post/image/${p.getImage().getId()}|}" alt="Card image" name="image_id">
+					<div class="img-container" id="move">
+						<img th:src="@{|/post/image/${p.getImage().getId()}|}" alt="Event image" name="image_id">
 					</div>
-
+		
 					<div class="body-container" th:name="${p.getTitle()}">
 						<div class="overlay"></div>
+						
 						<div class="event-info">
-							<p name="title" class="title" th:text="${p.getTitle()}">title</p>
+							<p name="title" class="title" th:text="${p.getTitle()}" >title</p>
 							<div class="small-container" th:with="date = ${p.getEvent_date()}" th:unless="date != null">
-								<p date name="date-event" class="date-event" 
-									th:text=" |event_date: ${#dates.format( date , 'dd/mm/yyyy')} |"> date </p>
-							</div>
+							<p name="place" class="place">Roma,<date name="date-event" class="date-event" th:text=" |event_date: ${#dates.format( date , 'dd/mm/yyyy')} |"> event_date</date></p>
 							</div>
 							<div class="info-event">
-
-							<div class="event-description">
-								<p th:text="${p.getBody()}">
-
-								</p>
-							</div>
-							</div>
-							<footer>
-								<div class="small-container2">
-									<p name="author" class="author"th:text="${p.getAuthor()}">Autore
 										
-										</p>
-								</div>
-								
-								<div class="small-container2">
-								<p name="published-at" class="published-at"th:with="date = ${p.getPublished_at()} "
-										th:text="|published : ${#dates.format(date, 'dd/MM/yyyy')}|"> published_at</p>
-										</div>
-								
-							</footer>
-	
-
+								<div class="event-description">
+									<p style="overflow: hidden;" th:text="${p.getBody()}">
+										body
+										
+									</p>
+									
+							</div>
 						</div>
-						
-						
+		
+						<footer>
+							<div class="small-container2">
+							<p name="author" class="author" th:text="${p.getAuthor()}" >Autore,<date name="published-at" class="published-at" th:with="date = ${p.getPublished_at()} "
+										th:text="|published : ${#dates.format(date, 'dd/MM/yyyy')}|"> published_at</date></p>
+						</div>
+						</footer>
+							
+							
+						</div>
 						<button class="action">Link</button>
 					</div>
 				</div>
 				
-
+				</div>
 
 			
 			
@@ -187,16 +182,15 @@
           <form id="postForm" th:action="@{/api/post/create}" method="post" enctype="multipart/form-data">
         
             <label for="author">Autore</label>
-            <input id="author" type="text" style="text-align: left; width: 40%;margin-right: 60%;">
-            <label for="author" id="author_lb" >Error Label</label>
+            <input id="author" type="text" style="direction: ltr; width: 40%;margin-right: 60%;">
+            <p for="author" id="author_lb" class="error"style="direction: ltr; width: 40%;margin-right: 60%;" >Error Label</p>
             
 			<label for="title">Titolo</label>
-            <input id="title" type="text"  style="text-align: left; width: 40%;margin-right: 60%;">
-            <label for="title" id="title_lb" >Error Label</label>
+            <input id="title" type="text"  style="direction: ltr; width: 40%;margin-right: 60%;">
+            <p for="title" id="title_lb" class="error" style="direction: ltr; width: 40%;margin-right: 60%;">Error Label</p>
             
 			<label for="category">Categoria</label>
-            <label for="category" id="category_lb" >Error Label</label>
-            <select id="category"   style="text-align: left; width: 40%;margin-right: 60%;">
+            <select id="category"   style="direction: ltr;width: 40%;margin-right: 60%;">
 				
                 <option style="text-align:left;" th:each="c : ${categories}" th:text="${c.getName()}" th:value="${c.getName()}"> category </option>
 				
@@ -204,19 +198,19 @@
 			
             
             <label for="body" style="margin-top: 50px;">Event Details</label>
-            <textarea id="body" name="body"  style="text-align: left;"></textarea>
-            <label for="body" id="body_lb">Error Label</label>
+            <textarea id="body" name="body"  style="direction: ltr;"></textarea>
+            <p for="body" id="body_lb" class="error"style="direction: ltr;">Error Label</p>
 			
             <label for="event-date">Date Of Event</label>
-			<input type="date" name="date" id="date" style="text-align: left;">
-            <label for="event-date" id="date_lb"name="date_lb" >Error Label</label>
+			<input type="date" name="date" id="date" style="direction: ltr;">
+            <p for="event-date" id="date_lb"name="date_lb" class="error" style="direction: ltr; width: 40%;margin-right: 60%;" ></p>
 			
 			<label  for="upload-btn-wrapper">Select A File</label>
-			<div class="upload-btn-wrapper" style="margin-bottom: 30px;">
-				<button class="btn">Upload</button>
-				<input type="file" name="image" id="image" />
-				<label for="image" id="image_lb" >Error Label</label>
+		<div class="mb-3"  style="direction: ltr;">
+				<input type="file"class="form-control" name="image" id="image"  style="border-radius: 20px;">
+				
           </div>
+		  <p for="image" id="image_lb" class="error" style="direction: ltr;width: 40%;margin-right: 60%;"></p>
         
            
             <button type="reset">Reset</button>
