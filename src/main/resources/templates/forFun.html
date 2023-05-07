@@ -139,12 +139,12 @@
 						<div class="event-info">
 							<p name="title" class="title" th:text="${p.getTitle()}" >title</p>
 							<div class="small-container" th:with="date = ${p.getEvent_date()}" th:unless="date != null">
-							<p name="place" class="place">Roma,<date name="date-event" class="date-event" th:text=" |event_date: ${#dates.format( date , 'dd/mm/yyyy')} |"> event_date</date></p>
+							<p name="place" class="place">Roma,<p name="date-event" class="date-event" th:text=" |event_date: ${#dates.format( date , 'dd/mm/yyyy')} |"> event_date</p></p>
 							</div>
 							<div class="info-event">
 										
 								<div class="event-description">
-									<p style="overflow: hidden;" th:text="${p.getBody()}">
+									<p style="overflow: hidden;" th:utext="${p.getBody()}">
 										body
 										
 									</p>
@@ -154,14 +154,12 @@
 		
 						<footer>
 							<div class="small-container2">
-							<p name="author" class="author" th:text="${p.getAuthor()}" >Autore,<date name="published-at" class="published-at" th:with="date = ${p.getPublished_at()} "
-										th:text="|published : ${#dates.format(date, 'dd/MM/yyyy')}|"> published_at</date></p>
+							<p name="author" class="author" th:text="|${p.getAuthor()}, at ${#dates.format(date, 'dd/MM/yyyy')}| " th:with="date = ${p.getPublished_at()} " >Autore</p>
 						</div>
 						</footer>
 							
 							
 						</div>
-						<button class="action">Link</button>
 					</div>
 				</div>
 				
