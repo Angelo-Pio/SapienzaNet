@@ -121,11 +121,7 @@
 			</div>
 
 			<div class="scrolling-wrapper reveal" >
-
-
-				
-
-				
+		
 				 <!--Card--> 
 				 <div class="item-container" th:each="p : ${posts}" th:if="${p.getCategory()} == ${c.getName()}">
 					<!--image for the event-->
@@ -134,33 +130,39 @@
 					</div>
 		
 					<div class="body-container" th:name="${p.getTitle()}">
-						<div class="overlay"></div>
+						<div class="overlay">
+						
+							<div  
+							th:with="date = ${p.getEvent_date()}" 
+							th:unless="${p.getEvent_date()} == null" 
+							name="date-event" 
+							th:text="|Roma, in data : ${#dates.format( date , 'dd/mm/yyyy')} |" 
+							style="white-space: normal; text-align:center; font-size: 20px; padding-top:20% ; color: white "> event_date</div>
+							
+						
+						</div>
 						
 						<div class="event-info">
 							<p name="title" class="title" th:text="${p.getTitle()}" >title</p>
-							<div class="small-container" th:with="date = ${p.getEvent_date()}" th:unless="date != null">
-							<p name="place" class="place">Roma,<p name="date-event" class="date-event" th:text=" |event_date: ${#dates.format( date , 'dd/mm/yyyy')} |"> event_date</p></p>
-							</div>
+							
 							<div class="info-event">
 										
-								<div class="event-description">
-									<p style="overflow: hidden;" th:utext="${p.getBody()}">
-										body
-										
-									</p>
+								<div class="event-description" th:text="${p.getBody()}">
+									
+								</div>
 									
 							</div>
-						</div>
 		
 						<footer>
 							<div class="small-container2">
-							<p name="author" class="author" th:text="|${p.getAuthor()}, at ${#dates.format(date, 'dd/MM/yyyy')}| " th:with="date = ${p.getPublished_at()} " >Autore</p>
+							<p name="author" class="author"style="white-space: normal;" th:text="|${p.getAuthor()}, at ${#dates.format(date, 'dd/MM/yyyy')}| " th:with="date = ${p.getPublished_at()} " >Autore</p>
 						</div>
 						</footer>
 							
 							
 						</div>
 					</div>
+					
 				</div>
 				
 				</div>
@@ -168,7 +170,6 @@
 			
 			
 		</div>
-
 
 
 
@@ -181,11 +182,11 @@
         
             <label for="author">Autore</label>
             <input id="author" type="text" style="direction: ltr; width: 40%;margin-right: 60%;">
-            <p for="author" id="author_lb" class="error"style="direction: ltr; width: 40%;margin-right: 60%;" >Error Label</p>
+            <p for="author" id="author_lb" class="error"style="direction: ltr;" >Error Label</p>
             
 			<label for="title">Titolo</label>
             <input id="title" type="text"  style="direction: ltr; width: 40%;margin-right: 60%;">
-            <p for="title" id="title_lb" class="error" style="direction: ltr; width: 40%;margin-right: 60%;">Error Label</p>
+            <p for="title" id="title_lb" class="error" style="direction: ltr;">Error Label</p>
             
 			<label for="category">Categoria</label>
             <select id="category"   style="direction: ltr;width: 40%;margin-right: 60%;">
@@ -201,18 +202,27 @@
 			
             <label for="event-date">Date Of Event</label>
 			<input type="date" name="date" id="date" style="direction: ltr;">
-            <p for="event-date" id="date_lb"name="date_lb" class="error" style="direction: ltr; width: 40%;margin-right: 60%;" ></p>
+            <p for="event-date" id="date_lb"name="date_lb" class="error" style="direction: ltr; " ></p>
 			
-			<label  for="upload-btn-wrapper">Select A File</label>
-		<div class="mb-3"  style="direction: ltr;">
-				<input type="file"class="form-control" name="image" id="image"  style="border-radius: 20px;">
-				
-          </div>
-		  <p for="image" id="image_lb" class="error" style="direction: ltr;width: 40%;margin-right: 60%;"></p>
+
+
+			<div class="fileUpload btn btn-primary" style="text-align: center; width: 40%;margin-right: 60%;">
+				<span>Upload</span>
+				<input id="uploadBtn" type="file" class="upload"  />
+				</div>
+			
+			<input id="uploadFile" placeholder="File Name here" disabled="disabled" style="text-align: left; width: 40%;margin-right: 60%;" />
+			  
+			
+		
+		  <p for="image" id="image_lb" class="error" style="direction: ltr;"></p>
         
            
             <button type="reset">Reset</button>
             <button type="submit">Submit</button>
+            
+        
+			
            
           </form>
              
@@ -232,6 +242,11 @@
 	
 
 	<script type="text/javascript">
+		    document.getElementById("uploadBtn").onchange = function () {
+			document.getElementById("uploadFile").value = this.value;
+};
+
+
 		window.addEventListener('scroll',reveal);
 		function reveal(){
 		  var reveals =document.querySelectorAll('.reveal');
@@ -250,6 +265,8 @@
 		  }
 		}
 	
+		
+		
 	  </script>
 		  
 
