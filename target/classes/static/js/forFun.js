@@ -159,6 +159,7 @@ function checkFormFields(post) {
 		$(body_lb).text("Body should be at least 50 characters long and 1000 maximum long");
 		res = false;
 	}
+	
 
 
 	return res;
