@@ -1,4 +1,8 @@
 
+a, a:hover, a:focus, a:active {
+	text-decoration: none;
+	color: inherit;
+}
 .logo{
   position: absolute;
   left: 20px;
@@ -49,6 +53,7 @@ html {
   -webkit-overflow-scrolling: touch;
   background-color:white;
   border-radius: 30px;
+  box-shadow:5px 5px 10px rgb(35, 77, 129);
 
   
 
@@ -62,7 +67,8 @@ html {
   display: none;
 }
 .scrolling-wrapper:hover{
-  box-shadow:15px 15px 20px rgb(3, 18, 37);
+  box-shadow:15px 15px 20px  rgb(35, 77, 129);
+
 }
 
 
@@ -210,7 +216,7 @@ html {
   height: 280px;
   margin-top: 5px;
  
-  background-color: #edf2f2;
+
 
   border-radius: 30px;
  
@@ -221,6 +227,8 @@ html {
   white-space: initial;
 }
 .info-event:hover{
+  box-shadow:5px 5px 5px 5px #bec8cf; 
+  transition:box-shadow ease-in-out 0.3s;
   outline: none;
   transform: scale(1.05);
   transition: transform 0.3s ease-in-out;
@@ -324,7 +332,8 @@ font-weight: 600;
 
 /*form*/
 .contact-form {
-background-color: #f2f2f2;
+background-color: #eef4f7;
+
 padding: 20px;
 margin-right: 250px;
 margin-top: 200px;
@@ -339,7 +348,7 @@ width: 60%;
 
 }
 .contact-form:hover{
-box-shadow:15px 15px 20px rgb(3, 18, 37);
+  box-shadow:10px 10px 15px rgb(35, 77, 129);
 }
 
 .contact-form label {
@@ -389,10 +398,10 @@ transition: transform 0.3s ease-in-out;
 
 
 .contact-form button[type="submit"] {
-background-color: #9292c6;
+background-color: #92b0c6;
 color: #fff;
 border: none;
-border-radius: 5px;
+border-radius: 15px;
 padding: 10px 20px;
 font-size: 16px;
 cursor: pointer;
@@ -401,10 +410,10 @@ width: 40%;
 
 }
 .contact-form button[type="reset"] {
-background-color: #9292c6;
+background-color: #92b0c6;
 color: #fff;
 border: none;
-border-radius: 5px;
+border-radius: 15px;
 padding: 10px 20px;
 font-size: 16px;
 cursor: pointer;
@@ -448,15 +457,15 @@ transition: transform 0.3s ease-in-out;
 .fileUpload {
   position: relative;
   overflow: hidden;
-  background-color: #9292c6;
-  color: #fff;
+  background-color: #92b0c6;
+  color: #92b0c6;
   border: none;
   border-radius: 5px;
 
 }
 .fileUpload:hover{
   
-  background-color: #9292c6;
+  background-color: #bdd3e0;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -522,6 +531,9 @@ transition: transform 0.3s ease-in-out;
 .contact-form button[type="submit"]{
   font-size: 14px;
   font-weight: 200;
+}
+.btn-res{
+  margin-top: 14px;
 }
 
 
