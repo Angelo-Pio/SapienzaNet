@@ -111,53 +111,60 @@
 					<div class="sources">
 
 <!--  Questo [(${course.getResources()})] che vedi sotto serve per fare il display dell'html conservato nel db-->
-							[(${course.getResources()})]
+							
 							
 						
-							<p>In questa sezione sono presenti i link di maggiore interesse</p>
+							<p style="margin-bottom:40px;">In questa sezione sono presenti i link di maggiore interesse</p>
 							
 							 <div class="row row-cols-3 row-cols-lg-5 g-2 g-lg-3">
-								<div class="col">
+								<div class="col" th:if="${course.getYt()} != null" >
 
 
 									<a
-										href="yt" class="lezioni-yt">
+										th:href="${course.getYt()}" class="lezioni-yt">
 										<i class="fa fa-youtube-play" style="color: rgb(201, 52, 52)"></i>
 									</a>
 									<div class="p-3 border " style="text-align: center;">Youtube Lessons</div>
 								</div>
-								<div class="col">
+								
+								<div class="col" th:if="${course.getProf()} != null">
 
-									<a href="prof" class="#"> <i class="fa fa-folder-open"
+									<a th:href="${course.getProf()}" class="#"> <i class="fa fa-folder-open"
 										aria-hidden="true" style="color: rgb(84, 57, 156)"></i>
 									</a>
 									<div class="p-3 border " style="text-align: center;">Prof Website</div>
 								</div>
-								<div class="col">
+								
+								<div class="col" th:if="${course.getSite()} != null">
 
-									<a href="site" class="#"> <i class="fa fa-university"
+									<a th:href="${course.getSite()}" class="#"> <i class="fa fa-university"
 										aria-hidden="true" style="color: rgb(50, 82, 134)"></i>
 									</a>
 									<div class="p-3 border" style="text-align: center;">Istitutional Website</div>
 								</div>
 								
-								<div class="col">
+								<div class="col" th:if="${course.getChat()} != null">
 
-									<a href="chat" class="#"> <i class="fa fa-whatsapp"
+									<a th:href="${course.getChat()}"class="#"> <i class="fa fa-whatsapp"
 										aria-hidden="true" style="color: rgb(143, 211, 48)"></i>
 									</a>
 									<div class="p-3 border "style="text-align: center;" >Chat Groups</div>
 								</div>
 								
-								<div class="col">
+								<div class="col" th:if="${course.getMaps()} != null">
                   
-									<a href="maps" class="#">
+									<a th:href="${course.getMaps()}" class="#">
 									  <i class="fa fa-map-marker" aria-hidden="true" ></i>
 				  
 									</a>
 									<div class="p-3 border " style="text-align: center;">Location</div>
 									
 								  </div>
+								  
+								  <div class="row">
+								  [(${course.getResources()})]
+								  </div>
+								  
 							 </div>
 					</div>
 
