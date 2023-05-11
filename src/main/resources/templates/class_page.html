@@ -117,7 +117,7 @@
 							<p style="margin-bottom:40px;">In questa sezione sono presenti i link di maggiore interesse</p>
 							
 							 <div class="row row-cols-3 row-cols-lg-5 g-2 g-lg-3">
-								<div class="col" th:if="${course.getYt()} != null" >
+								<div class="col" th:if="${#strings.isEmpty(course.getYt())} == false">
 
 
 									<a
@@ -127,7 +127,7 @@
 									<div class="p-3 border " style="text-align: center;">Youtube Lessons</div>
 								</div>
 								
-								<div class="col" th:if="${course.getProf()} != null">
+								<div class="col" th:if="${#strings.isEmpty(course.getProf())} == false">
 
 									<a th:href="${course.getProf()}" class="#"> <i class="fa fa-folder-open"
 										aria-hidden="true" style="color: rgb(84, 57, 156)"></i>
@@ -135,7 +135,7 @@
 									<div class="p-3 border " style="text-align: center;">Prof Website</div>
 								</div>
 								
-								<div class="col" th:if="${course.getSite()} != null">
+								<div class="col" th:if="${#strings.isEmpty(course.getSite())} == false">
 
 									<a th:href="${course.getSite()}" class="#"> <i class="fa fa-university"
 										aria-hidden="true" style="color: rgb(50, 82, 134)"></i>
@@ -143,7 +143,7 @@
 									<div class="p-3 border" style="text-align: center;">Istitutional Website</div>
 								</div>
 								
-								<div class="col" th:if="${course.getChat()} != null">
+								<div class="col" th:if="${#strings.isEmpty(course.getChat())} == false">
 
 									<a th:href="${course.getChat()}"class="#"> <i class="fa fa-whatsapp"
 										aria-hidden="true" style="color: rgb(143, 211, 48)"></i>
@@ -151,7 +151,7 @@
 									<div class="p-3 border "style="text-align: center;" >Chat Groups</div>
 								</div>
 								
-								<div class="col" th:if="${course.getMaps()} != null">
+								<div class="col" th:if="${#strings.isEmpty(course.getMaps())} == false">
                   
 									<a th:href="${course.getMaps()}" class="#">
 									  <i class="fa fa-map-marker" aria-hidden="true" ></i>
