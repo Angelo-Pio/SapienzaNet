@@ -19,6 +19,44 @@
 	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
 	rel="stylesheet">
 	
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+	
+function uploadFile() {
+	const formData = new FormData();
+	formData.append('file', $('#inputGroupFile02')[0].files[0]);
+	
+	let class_code = $('#class_code').text();
+	let url = "http://localhost:8080/api/course/";
+	
+	url = url+class_code+'/upload'
+	console.log(url);
+	$.ajax({
+		url : url,
+		type : 'POST',
+		data : formData,
+		contentType : false,
+		processData : false,
+		success : function(response) {
+			console.log('Post created successfully:', response);
+		},
+		error : function(xhr, status, error) {
+			console.error('Error creating post:', error);
+		}
+	});
+}
+
+$(document).ready(function() {
+	$('#fileUpload').on('submit', function(event) {
+		event.preventDefault();
+		console.log("invoked");
+		uploadFile();
+	});
+});
+
+</script>
 
 
 </head>
@@ -174,10 +212,13 @@
 								  <div class="info-prof" >
 									<p>Per contribuire allo sviluppo e all'efficienza del sito, puoi aggiungere file che ritieni utili per la fruizione dei futuri studenti.</p>
 								   <!-- FILE UPLOAD-->
+								   <form id="fileUpload">
 								   <div class="input-group mb-3" style="border-radius: 20px;">
 									<input type="file" class="form-control" id="inputGroupFile02" style="border-radius: 20px;">
+								  	<span id="class_code" th:text="${course.getClass_code()}" hidden="true"></span>
 									<input type="submit" class="input-group-text" for="inputGroupFile02" style="border-radius: 20px;"></input>
 								  </div>
+								   </form>
 								  </div>
 
 
