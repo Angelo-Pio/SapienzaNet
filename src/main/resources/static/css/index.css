@@ -1,3 +1,9 @@
+
+a, a:hover, a:focus, a:active {
+	text-decoration: none;
+	color: inherit;
+}
+
 /* remove scrollbar*/
 
 body::-webkit-scrollbar {
@@ -38,25 +44,25 @@ html {
 	background-size: cover;
 	background-position: center;
 	background-blend-mode: multiply;
-	height: 680px;
+	height: 730px;
 }
 
 .btn {
-	font-size: 20px;
-	background-color: white;
-	box-shadow: rgb(65, 65, 72);
+	font-size: 30px;
+	background-color: rgb(103, 117, 132);
 	border-radius: 20px;
 	transition-duration: 0.3s;
 	cursor: pointer;
 	border: 0;
-
-	color:black;
+  color: white;
 }
 
 .btn:hover {
-	background-color: #606285;
-	color: white;
-	box-shadow: 5px 5px 5px rgb(65, 65, 72);
+	background-color: #286da9;
+  font-size: 40px;
+  transition: font-size ease-in-out 0.3s;
+  color: white;
+  box-shadow: 5px 5px 5px rgb(65, 65, 72);
 }
 /* about us section */
 .pic {
@@ -78,6 +84,10 @@ html {
 	width: 100%;
 	padding: 90px 0;
 	background-color: white;
+	text-align: center;
+	margin-bottom: 100px;
+	margin-top: 100px;
+
 }
 
 .text h2 {
@@ -136,6 +146,8 @@ span {
 	width: 100%;
 	padding: 90px 0;
 	background-color: white;
+	text-align: center;
+
 }
 
 /* bottom of the page */
@@ -150,11 +162,11 @@ span {
 	}
 	.pic {
 		height: auto;
-		width: 300px;
+		
 	}
 	.our-services {
-		padding-top: 300px;
-		padding-bottom: 300px;
+		text-align: center;
+		
 	}
 	.text p {
 		font-size: 15px;
@@ -168,11 +180,24 @@ span {
 }
 
 @media screen and (max-width: 600px) {
+	
 	.footer {
-		padding-top: 500px;
+		margin-bottom: 250px;
+		
 	}
+	.about-us{
+		text-align: center;
+		margin: auto;
+	}
+
+
 	.pic {
-		width: 200px;
+		width: 70%;
+		text-align: center;
+	}
+	.our-services{
+		margin-top: auto;
+		text-align: center;
 	}
 	.text h2 {
 		font-size: 20px;
@@ -180,4 +205,15 @@ span {
 	.text p {
 		font-size: 13px;
 	}
+	.button-cl{
+		
+		display: inline-block;
+		
+	  }
+	  .btn{
+		font-size: 13px;
+	  }
+	  .btn:hover{
+		font-size: 30px;
+	  }
 }

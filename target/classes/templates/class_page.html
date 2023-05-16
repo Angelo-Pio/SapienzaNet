@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <title>Course Page</title>
+<link rel="icon" type="image/x-icon" th:href="@{/images/favicon.jpeg}">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.rtl.min.css"
 	integrity="sha384-DOXMLfHhQkvFFp+rWTZwVlPVqdIhpDVYT9csOnHSgWQWPX0v5MCGtjCJbY6ERspU"
@@ -18,6 +19,44 @@
 	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap"
 	rel="stylesheet">
 	
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+	
+function uploadFile() {
+	const formData = new FormData();
+	formData.append('file', $('#inputGroupFile02')[0].files[0]);
+	
+	let class_code = $('#class_code').text();
+	let url = "http://localhost:8080/api/course/";
+	
+	url = url+class_code+'/upload'
+	console.log(url);
+	$.ajax({
+		url : url,
+		type : 'POST',
+		data : formData,
+		contentType : false,
+		processData : false,
+		success : function(response) {
+			console.log('Post created successfully:', response);
+		},
+		error : function(xhr, status, error) {
+			console.error('Error creating post:', error);
+		}
+	});
+}
+
+$(document).ready(function() {
+	$('#fileUpload').on('submit', function(event) {
+		event.preventDefault();
+		console.log("invoked");
+		uploadFile();
+	});
+});
+
+</script>
 
 
 </head>
@@ -58,8 +97,8 @@
 
 		<!-- course section-->
 		<div class="course reveal">
-			<nav id="navbar-example2" class="navbar bg-light px-3 mb-3 reveal">
-				<a class="navbar-brand" href="#" th:text="${course.getName()}">Course
+			<nav id="navbar-example2" class="navbar bg-light px-3 mb-3 ">
+				<a class="navbar-brand" style="font-weight: bold;" href="#" th:text="${course.getName()}">Course
 					Name</a>
 				<ul class="nav nav-pills">
 					<li class="nav-item"><a class="nav-link"
@@ -72,7 +111,7 @@
 			</nav>
 
 			<!-- Side nav -->
-			<div class="sidenav reveal">
+			<div class="sidenav ">
 				<div class="file-section reveal">
 					<h5>File section</h5>
 					<div class="divider-2"> <span></span></div>
@@ -110,51 +149,60 @@
 					<div class="sources">
 
 <!--  Questo [(${course.getResources()})] che vedi sotto serve per fare il display dell'html conservato nel db-->
-							[(${course.getResources()})]
+							
 							
 						
-							<p>In questa sezione sono presenti i link di maggiore interesse</p>
+							<p style="margin-bottom:40px;">In questa sezione sono presenti i link di maggiore interesse</p>
 							
 							 <div class="row row-cols-3 row-cols-lg-5 g-2 g-lg-3">
-								<div class="col">
+								<div class="col" th:if="${#strings.isEmpty(course.getYt())} == false">
 
 
 									<a
-										href="#https://www.youtube.com/@videodiag-sapienzauniversi4757/playlists?view=50&sort=dd&shelf_id=2" class="lezioni-yt">
+										th:href="${course.getYt()}" class="lezioni-yt">
 										<i class="fa fa-youtube-play" style="color: rgb(201, 52, 52)"></i>
 									</a>
 									<div class="p-3 border " style="text-align: center;">Youtube Lessons</div>
 								</div>
-								<div class="col">
+								
+								<div class="col" th:if="${#strings.isEmpty(course.getProf())} == false">
 
-									<a href="#" class="#"> <i class="fa fa-folder-open"
+									<a th:href="${course.getProf()}" class="#"> <i class="fa fa-folder-open"
 										aria-hidden="true" style="color: rgb(84, 57, 156)"></i>
 									</a>
 									<div class="p-3 border " style="text-align: center;">Prof Website</div>
 								</div>
-								<div class="col">
+								
+								<div class="col" th:if="${#strings.isEmpty(course.getSite())} == false">
 
-									<a href="#https://corsidilaurea.uniroma1.it/it/corso/2022/31810/home" class="#"> <i class="fa fa-university"
+									<a th:href="${course.getSite()}" class="#"> <i class="fa fa-university"
 										aria-hidden="true" style="color: rgb(50, 82, 134)"></i>
 									</a>
 									<div class="p-3 border" style="text-align: center;">Istitutional Website</div>
 								</div>
-								<div class="col">
+								
+								<div class="col" th:if="${#strings.isEmpty(course.getChat())} == false">
 
-									<a href="#https://chat.whatsapp.com/H55IGEqG1Ph5NEY2elDYHm" class="#"> <i class="fa fa-whatsapp"
+									<a th:href="${course.getChat()}"class="#"> <i class="fa fa-whatsapp"
 										aria-hidden="true" style="color: rgb(143, 211, 48)"></i>
 									</a>
 									<div class="p-3 border "style="text-align: center;" >Chat Groups</div>
 								</div>
-								<div class="col">
+								
+								<div class="col" th:if="${#strings.isEmpty(course.getMaps())} == false">
                   
-									<a href="# https://www.google.com/maps/place/Edificio+Marco+Polo/@41.8963187,12.5202463,15z/data=!4m5!3m4!1s0x0:0x773e8360f9a9e5e!8m2!3d41.8963187!4d12.5202463?shorturl=1" class="#">
+									<a th:href="${course.getMaps()}" class="#">
 									  <i class="fa fa-map-marker" aria-hidden="true" ></i>
 				  
 									</a>
 									<div class="p-3 border " style="text-align: center;">Location</div>
 									
 								  </div>
+								  
+								  <div class="row">
+								  [(${course.getResources()})]
+								  </div>
+								  
 							 </div>
 					</div>
 
@@ -164,10 +212,13 @@
 								  <div class="info-prof" >
 									<p>Per contribuire allo sviluppo e all'efficienza del sito, puoi aggiungere file che ritieni utili per la fruizione dei futuri studenti.</p>
 								   <!-- FILE UPLOAD-->
+								   <form id="fileUpload">
 								   <div class="input-group mb-3" style="border-radius: 20px;">
 									<input type="file" class="form-control" id="inputGroupFile02" style="border-radius: 20px;">
+								  	<span id="class_code" th:text="${course.getClass_code()}" hidden="true"></span>
 									<input type="submit" class="input-group-text" for="inputGroupFile02" style="border-radius: 20px;"></input>
 								  </div>
+								   </form>
 								  </div>
 
 

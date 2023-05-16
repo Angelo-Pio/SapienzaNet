@@ -1,4 +1,8 @@
 
+a, a:hover, a:focus, a:active {
+	text-decoration: none;
+	color: inherit;
+}
 .logo{
   position: absolute;
   left: 20px;
@@ -49,6 +53,7 @@ html {
   -webkit-overflow-scrolling: touch;
   background-color:white;
   border-radius: 30px;
+  box-shadow:5px 5px 10px rgb(35, 77, 129);
 
   
 
@@ -62,7 +67,8 @@ html {
   display: none;
 }
 .scrolling-wrapper:hover{
-  box-shadow:15px 15px 20px rgb(3, 18, 37);
+  box-shadow:15px 15px 20px  rgb(35, 77, 129);
+
 }
 
 
@@ -90,7 +96,7 @@ html {
   width: 320px;
   height: 570px;
   overflow: hidden;
-  background-color: #fafafa;
+  background-color: white;
   box-shadow:5px 5px 10px rgb(143, 163, 189);
   cursor: pointer;
   margin-top: 80px;
@@ -118,7 +124,7 @@ html {
   box-shadow:5px 5px 10px rgb(215, 228, 244);
   margin-bottom: 20px;
   background-color: #d0d3d4;
-  color: white;
+  color: rgb(79, 70, 70);
   
 }
 .small-container .place, .date-event{
@@ -168,7 +174,7 @@ html {
   position: relative;
   width: 100%;
   height: 400px;
-  background-color: rgba(250, 251, 251, 0.6);
+  background-color: rgb(255, 248, 248);
   opacity: 0;
   transition: height linear 0.4s, opacity linear 0.2s;
   
@@ -176,10 +182,11 @@ html {
 
 .item-container:hover .overlay {
   opacity: 1;
-  height: 150px;
+  height: 215px;
 }
+
 .event-info {
-  background-color: #fffefe;
+  background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -193,6 +200,7 @@ html {
 .event-info .title{
   font-size: 40px;
   font-weight: 1000;
+ 
  
 }
 
@@ -209,8 +217,7 @@ html {
   width: 230px;
   height: 280px;
   margin-top: 5px;
- 
-  background-color: #edf2f2;
+  background-color: white;
 
   border-radius: 30px;
  
@@ -221,6 +228,8 @@ html {
   white-space: initial;
 }
 .info-event:hover{
+  box-shadow:5px 5px 5px 5px #bec8cf; 
+  transition:box-shadow ease-in-out 0.3s;
   outline: none;
   transform: scale(1.05);
   transition: transform 0.3s ease-in-out;
@@ -264,7 +273,7 @@ footer{
   transform: translateX(-50%);
   width: 60%;
   outline: none;
-  cursor: pointer;
+  
   padding: 12px;
   text-transform: uppercase;
   font-size: 1.3em;
@@ -324,22 +333,22 @@ font-weight: 600;
 
 /*form*/
 .contact-form {
-background-color: #f2f2f2;
+background-color: #eef4f7;
+
 padding: 20px;
-margin-right: 250px;
 margin-top: 200px;
 text-align: left;
 
 box-shadow:5px 5px 10px rgb(35, 77, 129);
 border-radius: 20px;
 position: relative;
-width: 60%;
+width: 100%;
 
 
 
 }
 .contact-form:hover{
-box-shadow:15px 15px 20px rgb(3, 18, 37);
+  box-shadow:10px 10px 15px rgb(35, 77, 129);
 }
 
 .contact-form label {
@@ -389,10 +398,10 @@ transition: transform 0.3s ease-in-out;
 
 
 .contact-form button[type="submit"] {
-background-color: #9292c6;
+background-color: #92b0c6;
 color: #fff;
 border: none;
-border-radius: 5px;
+border-radius: 15px;
 padding: 10px 20px;
 font-size: 16px;
 cursor: pointer;
@@ -401,10 +410,10 @@ width: 40%;
 
 }
 .contact-form button[type="reset"] {
-background-color: #9292c6;
+background-color: #92b0c6;
 color: #fff;
 border: none;
-border-radius: 5px;
+border-radius: 15px;
 padding: 10px 20px;
 font-size: 16px;
 cursor: pointer;
@@ -448,15 +457,15 @@ transition: transform 0.3s ease-in-out;
 .fileUpload {
   position: relative;
   overflow: hidden;
-  background-color: #9292c6;
-  color: #fff;
+  background-color:#92b0c6;
+  color: #92b0c6;
   border: none;
   border-radius: 5px;
 
 }
 .fileUpload:hover{
   
-  background-color: #9292c6;
+  background-color: #bdd3e0;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -500,8 +509,6 @@ transition: transform 0.3s ease-in-out;
 }
 .contact-form{
   margin-top: 250px;
-  margin-right: 80px;
-  margin-left: 100px;
 }
 }
 
@@ -522,6 +529,9 @@ transition: transform 0.3s ease-in-out;
 .contact-form button[type="submit"]{
   font-size: 14px;
   font-weight: 200;
+}
+.btn-res{
+  margin-top: 14px;
 }
 
 
@@ -551,13 +561,38 @@ transition: transform 0.3s ease-in-out;
 }
 .slide-container{
   width: 100%;
-  padding-bottom: 30%;
+  padding-bottom: 150%;
 }
 .container{
-  padding-top: 180%;
+  padding-top: 70%;
+ 
 }
+.scrolling-wrapper{
+  height:500px
+}
+.item-container{
+  height: 500px;
+  margin-top: 0px;
+}
+.event-info{
+  margin-top: 50px;
+  height: 200px;
+
+}
+.info-event{
+  margin-bottom: 10px;
+}
+
+
 .logo{
-  padding-bottom:40px ;
+  padding-bottom:0px ;
+  margin-left: -10px;
+}
+.event-info .title{
+  font-size: 25px;
+}
+.contact-form{
+  margin-bottom: 100px;
 }
 
 }

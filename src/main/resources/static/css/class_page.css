@@ -1,4 +1,8 @@
 
+a, a:hover, a:focus, a:active {
+	text-decoration: none;
+	color: inherit;
+}
 html{
 scroll-behavior: smooth;
 }
@@ -142,10 +146,11 @@ iframe{
     margin-right: 10%;
     margin-bottom: 200px;
     width: 80%;
-    box-shadow:5px 5px 10px rgb(170, 174, 175);
+    box-shadow:5px 5px 10px rgb(35, 77, 129);
+
 }
 .course:hover{
-  box-shadow:  3px 3px 10px 5px rgb(14, 14, 14);
+  
   transition: box-shadow 0.5s ease-in-out;
 }
 
@@ -205,15 +210,22 @@ iframe{
   margin-right: 10px;
   margin-bottom: 10px;
   margin-left: 10px;
-  border-radius: 50px;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow:3px 3px 3px rgb(190, 214, 243);
+  background-color: rgb(244, 245, 247);
+
 
 
     
 }
+.col{
+  display: inline-block;
+  text-align: center;
+}
 .col .fa{
   margin-right: 10px; 
   margin-bottom: 10px;
-  margin-left: 45px;
  
 }
 /* icone link */
@@ -223,6 +235,7 @@ iframe{
 
 }
 .fa:hover{
+  transition: font-size ease-in-out 0.3s;
   font-size: 90px;
   border-radius: 50px;
 }
@@ -232,6 +245,10 @@ iframe{
     font-weight: 800;
     margin-left: 40px;
     margin-top: 40px;
+
+}
+h4{
+  text-align: center;
 }
 .schedule{
     margin-top:20px;
@@ -297,21 +314,51 @@ background-color: rgb(223, 212, 238);
 
 }
 @media only screen and (max-width: 768px) {
-    /* For mobile phones: */
-    *{
-        font-size: small;
-    }
-    .sidenav{
-        width: 100px;
-
-    }
-    .content{
-        
-        margin-left: 100px;
-    }
-   
-   
-   
-    
-   
+  /* For mobile phones: */
+  *{
+      font-size: small;
   }
+  .sidenav{
+      width: 100px;
+
+  }
+  .content{
+      
+      margin-left: 100px;
+  }
+ 
+  .nav a{
+    font-size: 12px;
+    display: inline-block;
+    text-align: center;
+  }
+  .navbar-brand{
+    font-size: 0px;
+  }
+ .content{
+ margin-top: 500px;
+ width: 300px;
+ margin-left: 5px;
+text-align: center;
+ }
+ .sidenav{
+  width: 250px;
+  margin-left: 35px;
+  height: 400px;
+ }
+ .sidenav a{
+  text-align: center;
+ }
+ .sidenav h5{
+  text-align: center;
+ }
+ 
+
+  iframe{
+      width: 70%;
+  }
+ 
+ 
+  
+ 
+}
