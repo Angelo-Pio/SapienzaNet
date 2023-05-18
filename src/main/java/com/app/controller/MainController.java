@@ -78,7 +78,7 @@ public class MainController {
 	}
 	
 	@GetMapping(path="/course/{course_code}/download", produces = MediaType.APPLICATION_PDF_VALUE)
-	public ResponseEntity<org.springframework.core.io.Resource> download(@PathVariable("course_code") Integer course_code,
+	public ResponseEntity<byte[]> download(@PathVariable("course_code") Integer course_code,
 			@RequestParam("filename") String filename) {
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -90,22 +90,29 @@ public class MainController {
 			return ResponseEntity.ok().headers(headers).body(null);
 		}
 				
-		ByteArrayResource resource = new ByteArrayResource(resp.getData());
+//		ByteArrayResource resource = new ByteArrayResource(resp.getData());
 		
-		MediaType type;
+//		MediaType type;
+//		
+//		if(resp.getType().equals("pdf")) {
+//			type = MediaType.APPLICATION_PDF;
+//		}
+//		else if (resp.getType().equals("txt")) {
+//			
+//			type = MediaType.TEXT_PLAIN;
+//		}else {
+//			type = MediaType.IMAGE_JPEG;
+//			
+//		}
 		
-		if(resp.getType().equals("pdf")) {
-			type = MediaType.APPLICATION_PDF;
-		}
-		else if (resp.getType().equals("txt")) {
-			
-			type = MediaType.TEXT_PLAIN;
-		}else {
-			type = MediaType.IMAGE_JPEG;
-			
-		}
+//		return ResponseEntity.ok().headers(headers).contentLength(resource.contentLength()).contentType(type).body(resource);
 		
-		return ResponseEntity.ok().headers(headers).contentLength(resource.contentLength()).contentType(type).body(resource);
+
+		headers.setContentDisposition( ContentDisposition.attachment().build()) ; 	
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		
+		System.out.println(headers.toString());
+		return ResponseEntity.ok().headers(headers).body(resp.getData());
 	}
 	
 	@GetMapping("/post/image/{id}")

@@ -90,9 +90,10 @@ public class ApiCourseController {
 			return ResponseEntity.ok().headers(headers).body(null);
 		}
 		
-		headers.setContentDisposition( ContentDisposition.attachment().build()) ; 	
-		headers.setContentType(MediaType.valueOf(resp.getType()));
+		headers.setContentDisposition( ContentDisposition.attachment().filename(resp.getFilename()).build()) ; 	
+		headers.setContentType(MediaType.parseMediaType(resp.getType()));
 		
+		System.out.println(headers.toString());
 		return ResponseEntity.ok().headers(headers).body(resp.getData());
 	}
 
