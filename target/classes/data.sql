@@ -123,3 +123,7 @@ Il venerdi notte prevede Apertivo e a seguire Dj set con musica Commerciale.
 Eta media 25 anni in su', '2023-06-02 02:00:00', 'Iniziano le serate del venerdi notte al ...', '2023-05-16 20:22:54.346', 'Gus – Aperitivo e Discoteca', 'Party', 13);
 INSERT INTO public.posts (id, author, body, event_date, preview, published_at, title, category, image_id) VALUES (15, 'Spotted Sapienza', 'Vieni e scatenati al neon party questo venerdì 19 maggio al Nur Bar, via del teatro della valle 19. Tavolo a partire da 30 euro a persona', '2023-05-19 02:00:00', 'Vieni e scatenati al neon party questo v...', '2023-05-16 20:30:42.196', 'Neon Party', 'Party', 15);
 
+SELECT setval('posts_id_seq', 100, true);
+SELECT setval('post_image_id_seq', 100, true);
+SELECT setval('course_files_id_seq', 100, true);
+-- 

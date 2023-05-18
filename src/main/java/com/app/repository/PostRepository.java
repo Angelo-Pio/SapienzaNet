@@ -16,4 +16,8 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
 
 	@Query("select p from Post p order by p.event_date desc")
 	List<Post> findAllSortedByEvent_date();
+
+	
+	@Query("select max(p.id) from Post p")
+	Integer getMax();
 }

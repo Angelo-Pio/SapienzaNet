@@ -54,7 +54,6 @@ public class PostService {
 		
 		log.info("map RequestPostDto to Post model");
 		Optional<Post> post = mapper.fromRequestPostDtoToModel(request, category.get(), image.get());
-
 		if (post.isEmpty()) {
 			log.info("post is empty error");
 			return false;

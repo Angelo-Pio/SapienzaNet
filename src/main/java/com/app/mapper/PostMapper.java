@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,13 +15,17 @@ import com.app.dto.ResponsePostDto;
 import com.app.model.Category;
 import com.app.model.Post;
 import com.app.model.PostImage;
+import com.app.repository.PostRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
 public class PostMapper {
-
+	
+	@Autowired
+	PostRepository repo;
+	
 	public Optional<Post> fromRequestPostDtoToModel(RequestPostDto request, Category category, PostImage image) {
 		log.info("mapping...");
 
@@ -29,11 +34,10 @@ public class PostMapper {
 		String preview = request.getBody();
 
 		preview = preview.substring(0, 40) + "...";
-
 		
-		
-
+		Integer id = repo.getMax() + 1;
 		return Optional.of(Post.builder().author(request.getAuthor()).title(request.getTitle()).body(request.getBody())
+				.id(id)
 				.category(category)
 				.event_date(request.getEvent_date())
 				.image(image)
