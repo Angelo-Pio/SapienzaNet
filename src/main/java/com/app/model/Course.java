@@ -56,8 +56,7 @@ public class Course {
 	private String maps;
 	
 	
-	@Length(max = 1000)
-	@Column(columnDefinition = "varchar(1000) default 'Dettagli del corso a breve disponibili' ")
+	@Column(columnDefinition = "varchar(20000) default 'Dettagli del corso a breve disponibili' ")
 	private String details;
 
 	@NotBlank
@@ -66,7 +65,7 @@ public class Course {
 	private String professor_name;
 	
 	@NotNull
-	@Length(max=4000)
+	@Length(max = 20000)
 	private String professor_details;
 	
 	@NotNull

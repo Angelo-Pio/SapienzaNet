@@ -102,13 +102,8 @@ function sendRequestPostDto(formData) {
 		contentType: false,
 		processData: false,
 		success: function(response) {
-
-			if(response == true){
-				console.log('Post created successfully:', response);
-				location.reload(true);
-			}else{
-				displayErrors(response);
-			}
+			console.log('Post created successfully:', response);
+			location.reload(true);
 		},
 		error: function(xhr, status, error) {
 			console.error('Error creating post:', error);
