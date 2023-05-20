@@ -41,6 +41,7 @@ function uploadFile() {
 		processData : false,
 		success : function(response) {
 			console.log('Post created successfully:', response);
+			location.reload(true);
 		},
 		error : function(xhr, status, error) {
 			console.error('Error creating post:', error);
@@ -216,7 +217,7 @@ $(document).ready(function() {
 								   <div class="input-group mb-3" style="border-radius: 20px;">
 									<input type="file" class="form-control" id="inputGroupFile02" style="border-radius: 20px;">
 								  	<span id="class_code" th:text="${course.getClass_code()}" hidden="true"></span>
-									<input type="submit" class="input-group-text" for="inputGroupFile02" style="border-radius: 20px;"></input>
+									<input type="submit" class="input-group-text" for="inputGroupFile02" style="border-radius: 20px;" ></input>
 								  </div>
 								   </form>
 								  </div>
