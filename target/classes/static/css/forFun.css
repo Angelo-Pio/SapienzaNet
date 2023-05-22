@@ -71,6 +71,31 @@ html {
 
 }
 
+.tit {
+	overflow-x: scroll;
+white-space: nowrap;
+width: 183px;
+direction: ltr;
+}
+
+  .tit p{
+    font-weight: bold;
+  }
+  
+
+  .tit:hover p {
+  animation: scroll 4s linear; 
+  white-space: nowrap; 
+  }
+  
+  @keyframes scroll{
+  0% {
+		  transform: translateX(0%);
+		}
+		100% {
+		  transform: translateX(-100%); 
+		}
+  }
 
 
 
@@ -104,6 +129,9 @@ html {
   border-radius: 30px;
   
 }
+
+
+
 .item-container:hover{
   box-shadow: 10px 5px 5px 5px rgb(129, 155, 189);
   transition: box-shadow 0.3s ease-in-out;
@@ -145,6 +173,8 @@ html {
 .small-container2 .author, .published-at{
 
   margin-bottom: 20px;
+  background-color: #cee2ec;
+  border-radius: 20px;
   
   
 }
@@ -157,6 +187,8 @@ html {
   position: absolute;
   top: 0;
   left: 0;
+  width:100%;
+  heigth:100%;
  
 }
 
@@ -180,9 +212,18 @@ html {
   
 }
 
+.event_date{
+	white-space: normal; text-align:center; font-size: 20px; padding-top:20% ; color: black ; font-weight: bold; font-family: Arial;
+	
+}
+
+.event_date:hover{
+	opacity:100;
+}
 .item-container:hover .overlay {
-  opacity: 1;
+	opacity: 0.5;
   height: 215px;
+  background-blend-mode: multiply;
 }
 
 .event-info {
@@ -198,7 +239,7 @@ html {
 
 
 .event-info .title{
-  font-size: 40px;
+  font-size: x-large;
   font-weight: 1000;
  
  
@@ -215,7 +256,7 @@ html {
 .info-event {
   
   width: 230px;
-  height: 280px;
+  height: 220px;
   margin-top: 5px;
   background-color: white;
 

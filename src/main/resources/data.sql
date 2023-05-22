@@ -1,24 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 15.2 (Ubuntu 15.2-1.pgdg22.04+1)
--- Dumped by pg_dump version 15.2 (Ubuntu 15.2-1.pgdg22.04+1)
-
---SET statement_timeout = 0;
---SET lock_timeout = 0;
---SET idle_in_transaction_session_timeout = 0;
---SET client_encoding = 'UTF8';
---SET standard_conforming_strings = on;
---SELECT pg_catalog.set_config('search_path', '', false);
---SET check_function_bodies = false;
---SET xmloption = content;
---SET client_min_messages = warning;
---SET row_security = off;
-
---
--- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: angelo
---
 
 INSERT INTO public.categories (name) VALUES ('Lavoro');
 INSERT INTO public.categories (name) VALUES ('Party');
@@ -30,6 +9,10 @@ INSERT INTO public.categories (name) VALUES ('Case');
 -- Data for Name: course_files; Type: TABLE DATA; Schema: public; Owner: angelo
 --
 
+INSERT INTO public.course_files (id, data, filename, type) VALUES (101, 87070, 'Hardware summary.xlsx', 'xlsx');
+INSERT INTO public.course_files (id, data, filename, type) VALUES (102, 87073, 'dispensasdc2.pdf', 'pdf');
+INSERT INTO public.course_files (id, data, filename, type) VALUES (103, 87075, 'dispensasdc2.pdf', 'pdf');
+INSERT INTO public.course_files (id, data, filename, type) VALUES (104, 87077, 'dispensasdc2.pdf', 'pdf');
 
 
 --
@@ -622,6 +605,10 @@ PARTE 1: Algoritmi e Strutture Dati
 -- Data for Name: courses_files; Type: TABLE DATA; Schema: public; Owner: angelo
 --
 
+INSERT INTO public.courses_files (course_class_code, files_id) VALUES (1017400, 103);
+INSERT INTO public.courses_files (course_class_code, files_id) VALUES (1041467, 101);
+INSERT INTO public.courses_files (course_class_code, files_id) VALUES (1041467, 102);
+INSERT INTO public.courses_files (course_class_code, files_id) VALUES (1041467, 104);
 
 
 --
@@ -643,6 +630,10 @@ INSERT INTO public.post_image (id, data, filename) VALUES (12, 63107, 'Screensho
 INSERT INTO public.post_image (id, data, filename) VALUES (13, 63108, 'Gus-venerdi-28-gennaio-wpcf_300x197.png');
 INSERT INTO public.post_image (id, data, filename) VALUES (14, 63109, 'photo_2023-05-16_20-26-12.jpg');
 INSERT INTO public.post_image (id, data, filename) VALUES (15, 63110, 'photo_2023-05-16_20-30-26.jpg');
+INSERT INTO public.post_image (id, data, filename) VALUES (101, 87069, 'visual_187.png');
+INSERT INTO public.post_image (id, data, filename) VALUES (102, 87072, 'Rock in Roma 2023.jpg');
+INSERT INTO public.post_image (id, data, filename) VALUES (103, 87074, 'Rock in Roma 2023.jpg');
+INSERT INTO public.post_image (id, data, filename) VALUES (104, 87076, 'Rock in Roma 2023.jpg');
 
 
 --
@@ -721,30 +712,32 @@ Il venerdi notte prevede Apertivo e a seguire Dj set con musica Commerciale.
 
 Eta media 25 anni in su', '2023-06-02 02:00:00', 'Iniziano le serate del venerdi notte al ...', '2023-05-16 20:22:54.346', 'Gus – Aperitivo e Discoteca', 'Party', 13);
 INSERT INTO public.posts (id, author, body, event_date, preview, published_at, title, category, image_id) VALUES (15, 'Spotted Sapienza', 'Vieni e scatenati al neon party questo venerdì 19 maggio al Nur Bar, via del teatro della valle 19. Tavolo a partire da 30 euro a persona', '2023-05-19 02:00:00', 'Vieni e scatenati al neon party questo v...', '2023-05-16 20:30:42.196', 'Neon Party', 'Party', 15);
+INSERT INTO public.posts (id, author, body, event_date, preview, published_at, title, category, image_id) VALUES (101, 'Sapienza', 'Il 26 maggio dalle 9.30 alle 17.00, nella Sala delle lauree della Facoltà di Economia, si terrà il workshop internazionale Big Tech, Corporate Power and Economic Performance: Revisiting Monopoly Capitalism che prevede le relazioni di: Antonio Andreoni, David Bailey, Patrizio Bianchi, Valeria Cirillo, Martin Conyon, Andrea Coveri, Claudio Cozza, Sandrine Labory, Zhongjin Li, Christos Pitelis, Hao Qi, Malcolm Sawyer, Annamaria Simonazzi, Phil Tomlinson, Ramaa Vasudevan, Maria Enrica Virgillito.
+
+L''evento celebra i quaranta anni dalla pubblicazione del volume Monopoly Capitalism dell’economista inglese Keith Cowling con la presentazione del numero speciale del Cambridge Journal of Economics che ha collezionato contributi che si sono focalizzati sulla relazione tra concentrazione di potere economico, digitalizzazione, finanziarizzazione e dinamica industriale.', '2023-05-26 02:00:00', 'Il 26 maggio dalle 9.30 alle 17.00, nell...', '2023-05-22 12:04:26.984', 'Big Tech, corporate power and economic performance', 'Eventi', 101);
 
 
 --
 -- Name: course_files_id_seq; Type: SEQUENCE SET; Schema: public; Owner: angelo
 --
 
-SELECT pg_catalog.setval('public.course_files_id_seq', 100, true);
+SELECT pg_catalog.setval('public.course_files_id_seq', 104, true);
 
 
 --
 -- Name: post_image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: angelo
 --
 
-SELECT pg_catalog.setval('public.post_image_id_seq', 100, true);
+SELECT pg_catalog.setval('public.post_image_id_seq', 104, true);
 
 
 --
 -- Name: posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: angelo
 --
 
-SELECT pg_catalog.setval('public.posts_id_seq', 100, true);
+SELECT pg_catalog.setval('public.posts_id_seq', 104, true);
 
 
 --
 -- PostgreSQL database dump complete
 --
-

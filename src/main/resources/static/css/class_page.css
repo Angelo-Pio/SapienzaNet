@@ -10,6 +10,10 @@ body{
     background-color:white;
 }
 
+p {
+	white-space: pre-line;
+}
+
 * {
     box-sizing: border-box;
     font-family:'Open Sans';
@@ -204,6 +208,7 @@ iframe{
     
 
 }
+
 
 .p-3{
     

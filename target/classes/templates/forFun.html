@@ -120,17 +120,21 @@
 						<div class="overlay">
 						
 							<div  
+							class="event_date"
 							th:with="date = ${p.getEvent_date()}" 
 							th:unless="${p.getEvent_date()} == null" 
 							name="date-event" 
 							th:text="|Roma, in data : ${#dates.format( date , 'dd/MM/yyyy')} |" 
-							style="white-space: normal; text-align:center; font-size: 20px; padding-top:20% ; color: white "> event_date</div>
+							> event_date</div>
 							
 						
 						</div>
 						
 						<div class="event-info">
-							<p name="title" class="title" th:text="${p.getTitle()}" >title</p>
+						
+							<div class = "tit">
+								<p name="title" class="title" th:text="${p.getTitle()}" style="font-size:1.vw;">title</p>
+							</div>
 							
 							<div class="info-event">
 										

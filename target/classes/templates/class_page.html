@@ -160,7 +160,7 @@ $(document).ready(function() {
 
 
 									<a
-										th:href="${course.getYt()}" class="lezioni-yt">
+										th:href="${course.getYt()}" class="lezioni-yt" target="_blank">
 										<i class="fa fa-youtube-play" style="color: rgb(201, 52, 52)"></i>
 									</a>
 									<div class="p-3 border " style="text-align: center;">Youtube Lessons</div>
@@ -168,7 +168,7 @@ $(document).ready(function() {
 								
 								<div class="col" th:if="${#strings.isEmpty(course.getProf())} == false">
 
-									<a th:href="${course.getProf()}" class="#"> <i class="fa fa-folder-open"
+									<a th:href="${course.getProf()}" class="#" target="_blank"> <i class="fa fa-folder-open"
 										aria-hidden="true" style="color: rgb(84, 57, 156)"></i>
 									</a>
 									<div class="p-3 border " style="text-align: center;">Prof Website</div>
@@ -176,7 +176,7 @@ $(document).ready(function() {
 								
 								<div class="col" th:if="${#strings.isEmpty(course.getSite())} == false">
 
-									<a th:href="${course.getSite()}" class="#"> <i class="fa fa-university"
+									<a th:href="${course.getSite()}" class="#" target="_blank"> <i class="fa fa-university"
 										aria-hidden="true" style="color: rgb(50, 82, 134)"></i>
 									</a>
 									<div class="p-3 border" style="text-align: center;">Istitutional Website</div>
@@ -184,7 +184,7 @@ $(document).ready(function() {
 								
 								<div class="col" th:if="${#strings.isEmpty(course.getChat())} == false">
 
-									<a th:href="${course.getChat()}"class="#"> <i class="fa fa-whatsapp"
+									<a th:href="${course.getChat()}"class="#" target="_blank"> <i class="fa fa-whatsapp"
 										aria-hidden="true" style="color: rgb(143, 211, 48)"></i>
 									</a>
 									<div class="p-3 border "style="text-align: center;" >Chat Groups</div>
@@ -192,7 +192,7 @@ $(document).ready(function() {
 								
 								<div class="col" th:if="${#strings.isEmpty(course.getMaps())} == false">
                   
-									<a th:href="${course.getMaps()}" class="#">
+									<a th:href="${course.getMaps()}" target="_blank" class="#">
 									  <i class="fa fa-map-marker" aria-hidden="true" ></i>
 				  
 									</a>

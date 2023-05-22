@@ -218,20 +218,20 @@ html {
 	  
 	
 	  .scrolling-text:hover h2 {
-		animation: scroll 2s linear; 
+		animation: scroll 4s linear; 
 		white-space: nowrap; 
 	  }
 	
 	
 	  
-	  @keyframes scroll {
-		0% {
-		  transform: translateX(-100%);
+	  @keyframes scroll{
+  0% {
+		  transform: translateX(0%);
 		}
 		100% {
-		  transform: translateX(0%); 
+		  transform: translateX(-100%); 
 		}
-	  }
+  }
 	
 	.card h5{
 	  font-weight: 600;
