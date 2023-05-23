@@ -1,31 +1,4 @@
-function createPost() {
-	const formData = new FormData();
 
-
-	const post = {
-		author: $('#author').val(),
-		title: $('#title').val(),
-		category: $('#category').val(),
-		body: $('#body').val(),
-		event_date: $('#date').val()
-	};
-	console.log(JSON.stringify(post));
-
-	if (validatePost(post) == true) {
-		console.log("Post is correct");
-
-		formData.append('image', $('#uploadBtn')[0].files[0]);
-		formData.append('post', new Blob([JSON.stringify(post)], { type: 'application/json' }));
-		sendRequestPostDto(formData);
-		
-	} else {
-		console.log("post not correct");
-		return false;
-	}
-
-
-
-}
 
 $(document).ready(function() {
 	$(author_lb).text("");
@@ -46,6 +19,39 @@ $(document).ready(function() {
 
 });
 
+function createPost() {
+	const formData = new FormData();
+
+
+	const post = {
+		author: $('#author').val(),
+		title: $('#title').val(),
+		category: $('#category').val(),
+		body: $('#body').val(),
+		event_date: $('#date').val()
+	};
+	console.log(JSON.stringify(post));
+
+	// Validation !
+	if (validatePost(post) == true) {
+		console.log("Post is correct");
+
+		formData.append('image', $('#uploadBtn')[0].files[0]);
+		formData.append('post', new Blob([JSON.stringify(post)], { type: 'application/json' }));
+
+		// Send Request
+		sendRequestPostDto(formData);
+		
+	} else {
+		console.log("post not correct");
+		return false;
+	}
+
+
+
+}
+
+// Reset all elements!
 function resetForm() {
 	var elems = document.querySelectorAll(".error");
 	elems.forEach(itm => {
@@ -74,6 +80,7 @@ function validatePost(post) {
 			if (response !== "") {
 				console.log(response);
 				console.log("Errors in the form input, displaying errors");
+				// Display errors!
 				displayErrors(response);
 				res2 = false;
 			} else {
@@ -103,13 +110,13 @@ function sendRequestPostDto(formData) {
 		processData: false,
 		success: function(response) {
 			console.log('Post created successfully:', response);
+			// RELOAD DOPO UPDATE CON SUCCESSO
 			location.reload(true);
 		},
 		error: function(xhr, status, error) {
 			console.error('Error creating post:', error);
 		}
 	});
-	// RELOAD DOPO UPDATE CON SUCCESSO
 	
 
 }
